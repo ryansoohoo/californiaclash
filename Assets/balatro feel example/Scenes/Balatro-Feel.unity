@@ -336,6 +336,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8436a7e3d3df42d7a7058aec5e41a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCard: {fileID: 0}
+  hoveredCard: {fileID: 0}
+  slotPrefab: {fileID: 8994356602663114153, guid: 38aa6ba35be5144dc931edb1e6e43818,
+    type: 3}
+  cardsToSpawn: 5
+  cards: []
+  tweenCardReturn: 1
 --- !u!114 &176730505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +789,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 538047726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7077d9a40795e994194ecdc3040d5337, type: 3}
+  m_Script: {fileID: 11500000, guid: f651a77676c624984bb679a86b0add4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &619394800
@@ -1022,6 +1029,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8436a7e3d3df42d7a7058aec5e41a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCard: {fileID: 0}
+  hoveredCard: {fileID: 0}
+  slotPrefab: {fileID: 8994356602663114153, guid: 38aa6ba35be5144dc931edb1e6e43818,
+    type: 3}
+  cardsToSpawn: 7
+  cards: []
+  tweenCardReturn: 1
 --- !u!114 &667881469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,13 +1086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d4b5371ed84604db7decdbc7980561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
-  selectedCard: {fileID: 0}
-  hoveredCard: {fileID: 0}
-  slotPrefab: {fileID: 9195513469353590320, guid: 13e941fbf175c5a498d142baefdc9a0f,
-    type: 3}
-  cardsToSpawn: 7
-  cards: []
-  tweenCardReturn: 1
 --- !u!1 &732881781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,6 +1145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8436a7e3d3df42d7a7058aec5e41a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCard: {fileID: 0}
+  hoveredCard: {fileID: 0}
+  slotPrefab: {fileID: 8994356602663114153, guid: 38aa6ba35be5144dc931edb1e6e43818,
+    type: 3}
+  cardsToSpawn: 2
+  cards: []
+  tweenCardReturn: 1
 --- !u!114 &732881785
 MonoBehaviour:
   m_ObjectHideFlags: 0

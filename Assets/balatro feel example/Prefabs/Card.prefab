@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 200}
+  m_SizeDelta: {x: 142, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3479498278798631746
 CanvasRenderer:
@@ -60,10 +60,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d103f73c46c407db068681e2811968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instantiateVisual: 1
   moveSpeedLimit: 50
   selected: 0
   selectionOffset: 25
-  cardVisualPrefab: {fileID: 7310339964073049012, guid: bddd0263814164da396aa8d1438dd810, type: 3}
+  cardVisualPrefab: {fileID: 7310339964073049012, guid: bddd0263814164da396aa8d1438dd810,
+    type: 3}
   cardVisual: {fileID: 0}
   isHovering: 0
   isDragging: 0
