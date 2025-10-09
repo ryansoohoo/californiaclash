@@ -5,9 +5,9 @@ using UnityEngine;
 public static class GestureLookupTable {
     public static readonly GestureData FYou = new GestureData(
         Gestures.FYou,
-        new List<Gestures> { Gestures.OK, Gestures.Nose },
-        new List<Gestures> { Gestures.Scissors, Gestures.Gun, Gestures.Paper, Gestures.Peace, Gestures.Rock, Gestures.Boo },
-        new List<Gestures> { Gestures.FYou }
+        new List<Gestures> { Gestures.OK, Gestures.Nose }, // win
+        new List<Gestures> { Gestures.Scissors, Gestures.Gun, Gestures.Paper, Gestures.Peace, Gestures.Rock, Gestures.Boo }, // lose
+        new List<Gestures> { Gestures.FYou } //tie
     );
 
     public static readonly GestureData Scissors = new GestureData(
