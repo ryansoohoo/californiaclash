@@ -1,12 +1,14 @@
 using UnityEngine;
 using PrimeTween;
 using TMPro;
+using UnityEngine.UI;
 
 public class CardVisualSpot : MonoBehaviour {
     public CardSpot mySpot;
     public RectTransform rect;
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
+    public Image image;
     [SerializeField] float duration = 0.2f;
     [SerializeField] Ease ease = Ease.InOutSine;
     Vector2 lastTarget;
@@ -15,7 +17,6 @@ public class CardVisualSpot : MonoBehaviour {
     Tween tweenScale;
     bool spawned;
     Vector3 originalScale = Vector3.one;
-
     public void Bind(CardSpot s) {
         mySpot = s;
         if (!rect) rect = GetComponent<RectTransform>();
@@ -31,9 +32,13 @@ public class CardVisualSpot : MonoBehaviour {
                 tweenScale = Tween.LocalScale(rect, originalScale, duration, ease);
                 spawned = true;
             }
+            if (mySpot.cardHome) mySpot.cardHome.Layout();
+            int desired = mySpot.cardIndex < 0 ? 0 : mySpot.cardIndex;
+            int max = rect.parent ? rect.parent.childCount - 1 : 0;
+            if (desired > max) desired = max;
+            if (rect.GetSiblingIndex() != desired) rect.SetSiblingIndex(desired);
         }
     }
-
     void LateUpdate() {
         if (!mySpot || !mySpot.rect || !rect) return;
         var target = mySpot.rect.anchoredPosition;
@@ -44,5 +49,9 @@ public class CardVisualSpot : MonoBehaviour {
             tweenY = Tween.UIAnchoredPositionY(rect, target.y, duration, ease);
             lastTarget = target;
         }
+        int desired = mySpot.cardIndex < 0 ? 0 : mySpot.cardIndex;
+        int max = rect.parent ? rect.parent.childCount - 1 : 0;
+        if (desired > max) desired = max;
+        if (rect.GetSiblingIndex() != desired) rect.SetSiblingIndex(desired);
     }
 }
