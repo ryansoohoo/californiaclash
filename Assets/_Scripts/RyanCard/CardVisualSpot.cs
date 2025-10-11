@@ -1,8 +1,7 @@
 using UnityEngine;
 using PrimeTween;
-using UnityEngine.EventSystems;
-using TMPro;
-public class CardVisualSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+
+public class CardVisualSpot : MonoBehaviour {
     public CardSpot mySpot;
     public RectTransform rect;
     [SerializeField] float duration = 0.2f;
@@ -13,7 +12,6 @@ public class CardVisualSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     Tween tweenScale;
     bool spawned;
     Vector3 originalScale = Vector3.one;
-    public TextMeshProUGUI text;
 
     public void Bind(CardSpot s) {
         mySpot = s;
@@ -29,20 +27,6 @@ public class CardVisualSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 spawned = true;
             }
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData) {
-        if (!mySpot) return;
-        mySpot.isHovered = true;
-        var ch = mySpot.cardHome;
-        if (ch) ch.Layout();
-    }
-
-    public void OnPointerExit(PointerEventData eventData) {
-        if (!mySpot) return;
-        mySpot.isHovered = false;
-        var ch = mySpot.cardHome;
-        if (ch) ch.Layout();
     }
 
     void LateUpdate() {
