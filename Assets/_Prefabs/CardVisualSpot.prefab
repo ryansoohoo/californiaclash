@@ -442,5 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardVisualSpot
   mySpot: {fileID: 0}
   rect: {fileID: 8773525359653301}
+  leftText: {fileID: 2017710044383981286}
+  rightText: {fileID: 4763508878955064832}
   duration: 0.1
   ease: 30

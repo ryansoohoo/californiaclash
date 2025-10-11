@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour {
@@ -13,21 +14,21 @@ public class CardManager : MonoBehaviour {
         if (!cardHome) cardHome = CardHome.Instance;
         if (visualHome && !visualHome.home) visualHome.home = cardHome;
         if (visualHome && !visualHome.visualPrefab) visualHome.visualPrefab = visualPrefab;
-        for (int i = 0; i < initialCount; i++) AddCard();
         if (visualHome) visualHome.SyncFromHome();
     }
 
     public void AddCardDebug() {
-        AddCard();
+        AddCard((Gestures)RandomNumberGenerator.GetInt32(0, 9));
     }
 
-    public CardSpot AddCard() {
+    public CardSpot AddCard(Gestures gesture) {
         if (!cardHome || !cardSpotPrefab) return null;
         var s = Instantiate(cardSpotPrefab, cardHome.transform);
         var spot = s.GetComponent<CardSpot>();
         if (!spot) spot = s.gameObject.AddComponent<CardSpot>();
         if (!spot.rect) spot.rect = s.GetComponent<RectTransform>();
         spot.cardHome = cardHome;
+        spot.gesture= gesture;
         if (spot.rect) cardHome.AddItem(spot.rect);
         spots.Add(spot);
         if (visualHome) visualHome.AddVisualFor(spot);

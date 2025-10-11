@@ -1,9 +1,12 @@
 using UnityEngine;
 using PrimeTween;
+using TMPro;
 
 public class CardVisualSpot : MonoBehaviour {
     public CardSpot mySpot;
     public RectTransform rect;
+    public TextMeshProUGUI leftText;
+    public TextMeshProUGUI rightText;
     [SerializeField] float duration = 0.2f;
     [SerializeField] Ease ease = Ease.InOutSine;
     Vector2 lastTarget;
@@ -20,6 +23,8 @@ public class CardVisualSpot : MonoBehaviour {
             lastTarget = mySpot.rect.anchoredPosition;
             rect.anchoredPosition = lastTarget;
             if (!spawned) {
+                leftText.text = s.gesture.ToString();
+                rightText.text = s.gesture.ToString();
                 originalScale = rect.localScale;
                 rect.localScale = Vector3.zero;
                 if (tweenScale.isAlive) tweenScale.Stop();
