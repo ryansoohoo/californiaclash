@@ -1,7 +1,8 @@
 using UnityEngine;
 using PrimeTween;
+using UnityEngine.EventSystems;
 
-public class CardVisualSpot : MonoBehaviour {
+public class CardVisualSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public CardSpot mySpot;
     public RectTransform rect;
     [SerializeField] float duration = 0.2f;
@@ -27,6 +28,20 @@ public class CardVisualSpot : MonoBehaviour {
                 spawned = true;
             }
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        if (!mySpot) return;
+        mySpot.isHovered = true;
+        var ch = mySpot.cardHome;
+        if (ch) ch.Layout();
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        if (!mySpot) return;
+        mySpot.isHovered = false;
+        var ch = mySpot.cardHome;
+        if (ch) ch.Layout();
     }
 
     void LateUpdate() {
