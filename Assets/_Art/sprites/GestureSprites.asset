@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: GestureSprites
   m_EditorClassIdentifier: Assembly-CSharp::GestureSprites
   sprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 8c893fbddf1cfd446955fe9ea3c1364f, type: 3}
+  - {fileID: 21300000, guid: 33d97c1a654d27d48a0b3bb5c1c29fcb, type: 3}
+  - {fileID: 21300000, guid: 7866f209dac688a49a18550dbf45fe20, type: 3}
+  - {fileID: 21300000, guid: 5da506f790538d84ebbdd6ae09b39efc, type: 3}
+  - {fileID: 21300000, guid: f66bbd46053ca474e83602bb784c0ad4, type: 3}
+  - {fileID: 21300000, guid: d8e80e46ee0577243baca3fc42791633, type: 3}
+  - {fileID: 21300000, guid: 33d97c1a654d27d48a0b3bb5c1c29fcb, type: 3}
+  - {fileID: 21300000, guid: f18e97ae075dd1448a912e6f5a50a649, type: 3}
+  - {fileID: 21300000, guid: 0e146d9aed3bd8e4b978aa8c412e8a5d, type: 3}
