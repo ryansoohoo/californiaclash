@@ -1,16 +1,23 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CardSpot : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    public CardHome cardHome;
+    public RectTransform rect;
+    public bool isHovered;
+
+    void Awake() {
+        if (!rect) rect = GetComponent<RectTransform>();
+        if (!cardHome) cardHome = CardHome.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnPointerEnter(PointerEventData eventData) {
+        isHovered = true;
+        if (cardHome) cardHome.Layout();
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        isHovered = false;
+        if (cardHome) cardHome.Layout();
     }
 }

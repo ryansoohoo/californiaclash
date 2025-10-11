@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|c:\\users\\ryans\\desktop\\unitystarts\\psx-base\\urp-psx\\assets\\_scripts\\ryancard\\cardhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|c:\\users\\ryans\\desktop\\unitystarts\\psx-base\\urp-psx\\assets\\_scripts\\ryancard\\cardspot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardspot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\ryancard\\cardhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|c:\\users\\ryans\\desktop\\unitystarts\\psx-base\\urp-psx\\assets\\_scripts\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -51,19 +55,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CardHome.cs",
-              "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHome.cs",
-              "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardHome.cs",
-              "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHome.cs",
-              "RelativeToolTip": "Assets\\_Scripts\\RyanCard\\CardHome.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAkwIkAAAAAAAAAAAAAAA==",
+              "Title": "CardSpot.cs",
+              "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardSpot.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardSpot.cs",
+              "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardSpot.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\RyanCard\\CardSpot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-11T05:59:24.72Z",
+              "WhenOpened": "2025-10-11T06:25:35.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CardHome.cs",
+              "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHome.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardHome.cs",
+              "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHome.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\RyanCard\\CardHome.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAkwNIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T05:59:24.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Card.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Card.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Card.cs",
@@ -71,12 +87,11 @@
               "RelativeToolTip": "Assets\\_Scripts\\Card.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-11T05:20:08.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-11T05:20:08.49Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "EnemyGestureLookupTable.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Data\\Enemy\\EnemyGestureLookupTable.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Data\\Enemy\\EnemyGestureLookupTable.cs",
@@ -88,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "EnemyGestureData.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Data\\Enemy\\EnemyGestureData.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Data\\Enemy\\EnemyGestureData.cs",
@@ -100,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "GestureUnlocks.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Data\\GestureUnlocks.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Data\\GestureUnlocks.cs",
@@ -112,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GestureOutcome.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Data\\GestureOutcome.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Data\\GestureOutcome.cs",
@@ -124,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "GestureLookupTable.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Data\\GestureLookupTable.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Data\\GestureLookupTable.cs",
@@ -136,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "GestureData.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Data\\GestureData.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Data\\GestureData.cs",
@@ -148,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Gestures.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\Data\\Gestures.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Data\\Gestures.cs",

@@ -2,12 +2,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteAlways]
 public class CardHome : MonoBehaviour {
+    public static CardHome Instance { get; private set; }
     public enum VisibilityMode { UIBySibling, SpriteSortingOrder }
 
     [SerializeField] RectTransform container;
-    [SerializeField] List<RectTransform> items = new();
+    [SerializeField] List<RectTransform> items;
     [SerializeField] float itemWidth = 0f;
     [SerializeField] float baseGap = 12f;
     [SerializeField] float sidePadding = 0f;
@@ -16,40 +16,30 @@ public class CardHome : MonoBehaviour {
     [SerializeField] VisibilityMode visibility = VisibilityMode.UIBySibling;
     [SerializeField] string spriteSortingLayer = "";
     [SerializeField] int spriteSortingBase = 0;
+    [SerializeField] float hoverExtraGap = 24f;
 
     RectTransform _rt;
-    readonly List<Order> _order = new(64);
+    List<Order> _order;
+    int _lastHoverIndex = int.MinValue;
 
     struct Order { public float x; public RectTransform rt; }
 
-    void Reset() {
-        _rt = GetComponent<RectTransform>();
-        if (!container) container = _rt;
+    void Awake() {
+        if (Instance == null) Instance = this;
+        if (items == null) items = new List<RectTransform>(8);
+        if (_order == null) _order = new List<Order>(64);
     }
 
     void OnEnable() {
         if (!_rt) _rt = GetComponent<RectTransform>();
         if (!container) container = _rt;
+        _lastHoverIndex = GetHoveredIndex();
         Layout();
     }
 
-#if UNITY_EDITOR
-    void OnValidate() {
-        if (!_rt) _rt = GetComponent<RectTransform>();
-        if (!container) container = _rt;
-        SyncChildren();
-        Layout();
-    }
-#endif
-
-    void SyncChildren() {
-        int c = transform.childCount;
-        if (items == null) items = new List<RectTransform>(c);
-        else { items.Clear(); if (items.Capacity < c) items.Capacity = c; }
-        for (int i = 0; i < c; i++) {
-            var t = transform.GetChild(i) as RectTransform;
-            if (t) items.Add(t);
-        }
+    void Update() {
+        int idx = GetHoveredIndex();
+        if (idx != _lastHoverIndex) { _lastHoverIndex = idx; Layout(); }
     }
 
     public void Layout() {
@@ -69,20 +59,32 @@ public class CardHome : MonoBehaviour {
         float maxSpan = Mathf.Max(0f, usableW - w);
         float gap = desiredSpan <= maxSpan ? baseGap : Mathf.Max(minGap, (maxSpan / (n - 1)) - w);
         float step = w + gap;
-        float startX = -0.5f * (step * (n - 1));
+
+        int hoveredIndex = GetHoveredIndex();
+        float extra = hoveredIndex >= 0 ? Mathf.Max(0f, hoverExtraGap) : 0f;
+
+        float baseSpan = step * (n - 1);
+        float startX = -0.5f * baseSpan;
 
         for (int i = 0; i < n; i++) {
             var it = items[i];
             if (!it) continue;
+
             if (it.anchorMin.x != 0.5f || it.anchorMax.x != 0.5f || it.pivot.x != 0.5f) {
                 var am = it.anchorMin; am.x = 0.5f; it.anchorMin = am;
                 var ax = it.anchorMax; ax.x = 0.5f; it.anchorMax = ax;
                 var pv = it.pivot; pv.x = 0.5f; it.pivot = pv;
             }
-            Place(it, startX + i * step);
+
+            float x = startX + i * step;
+            if (extra > 0f) {
+                if (i <= hoveredIndex - 1) x -= extra;
+                else if (i >= hoveredIndex + 1) x += extra;
+            }
+            Place(it, x);
         }
 
-        ApplyVisibility();
+        ApplyVisibility(hoveredIndex);
         ApplyGradient();
     }
 
@@ -117,7 +119,7 @@ public class CardHome : MonoBehaviour {
         }
     }
 
-    void ApplyVisibility() {
+    void ApplyVisibility(int hoveredIndex = -1) {
         _order.Clear();
         for (int i = 0; i < items.Count; i++) {
             var rt = items[i];
@@ -134,15 +136,26 @@ public class CardHome : MonoBehaviour {
 
         if (visibility == VisibilityMode.UIBySibling) {
             for (int i = _order.Count - 1; i >= 0; i--) _order[i].rt.SetAsLastSibling();
+            if (hoveredIndex >= 0 && hoveredIndex < items.Count && items[hoveredIndex]) items[hoveredIndex].SetAsLastSibling();
         }
         else {
-            int top = spriteSortingBase + (_order.Count - 1);
+            int top = spriteSortingBase + _order.Count;
             for (int i = 0; i < _order.Count; i++) {
                 var rt = _order[i].rt;
                 var sr = rt.GetComponent<SpriteRenderer>() ?? rt.GetComponentInChildren<SpriteRenderer>();
                 if (!sr) continue;
                 if (!string.IsNullOrEmpty(spriteSortingLayer)) sr.sortingLayerName = spriteSortingLayer;
-                sr.sortingOrder = top - i;
+                sr.sortingOrder = top - (i + 1);
+            }
+            if (hoveredIndex >= 0 && hoveredIndex < items.Count) {
+                var rt = items[hoveredIndex];
+                if (rt) {
+                    var sr = rt.GetComponent<SpriteRenderer>() ?? rt.GetComponentInChildren<SpriteRenderer>();
+                    if (sr) {
+                        if (!string.IsNullOrEmpty(spriteSortingLayer)) sr.sortingLayerName = spriteSortingLayer;
+                        sr.sortingOrder = top + 1;
+                    }
+                }
             }
         }
     }
@@ -172,20 +185,22 @@ public class CardHome : MonoBehaviour {
         }
     }
 
-    void SetColor(RectTransform rt, float r, float b) {
+    static void SetColor(RectTransform rt, float r, float b) {
         var img = rt.GetComponent<Image>();
-        if (img) {
-            var c = img.color;
-            var nc = new Color(r, 0f, b, c.a);
-            if (c.r != nc.r || c.g != nc.g || c.b != nc.b || c.a != nc.a) img.color = nc;
-            return;
-        }
+        if (img) { var c = img.color; var nc = new Color(r, 0f, b, c.a); if (c != nc) img.color = nc; return; }
         var sr = rt.GetComponent<SpriteRenderer>() ?? rt.GetComponentInChildren<SpriteRenderer>();
-        if (sr) {
-            var c = sr.color;
-            var nc = new Color(r, 0f, b, c.a);
-            if (c.r != nc.r || c.g != nc.g || c.b != nc.b || c.a != nc.a) sr.color = nc;
+        if (sr) { var c = sr.color; var nc = new Color(r, 0f, b, c.a); if (c != nc) sr.color = nc; }
+    }
+
+    int GetHoveredIndex() {
+        int n = items.Count;
+        for (int i = 0; i < n; i++) {
+            var rt = items[i];
+            if (!rt) continue;
+            var spot = rt.GetComponent<CardSpot>();
+            if (spot != null && spot.isHovered) return i;
         }
+        return -1;
     }
 
     public void SetItems(List<RectTransform> list) { items = list ?? new List<RectTransform>(); Layout(); }
