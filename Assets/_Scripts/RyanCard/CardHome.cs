@@ -14,6 +14,23 @@ public class CardHome : MonoBehaviour {
     RectTransform _rt;
     int _lastHoverIndex = int.MinValue;
 
+    sealed class GestureComparer : IComparer<RectTransform> {
+        public static readonly GestureComparer Instance = new GestureComparer();
+        public int Compare(RectTransform a, RectTransform b) {
+            int ga = int.MaxValue;
+            int gb = int.MaxValue;
+            if (a) {
+                var sa = a.GetComponent<CardSpot>();
+                if (sa) ga = (int)sa.gesture;
+            }
+            if (b) {
+                var sb = b.GetComponent<CardSpot>();
+                if (sb) gb = (int)sb.gesture;
+            }
+            return ga.CompareTo(gb);
+        }
+    }
+
     void Awake() {
         if (Instance == null) Instance = this;
         if (items == null) items = new List<RectTransform>(8);
@@ -36,6 +53,7 @@ public class CardHome : MonoBehaviour {
         if (!container) container = _rt;
         int n = items.Count;
         if (n == 0) return;
+        items.Sort(GestureComparer.Instance);
         float W = container.rect.width > 0 ? container.rect.width : 750f;
         float w = ResolveItemWidth(n);
         if (n == 1) { Place(items[0], 0f); return; }
