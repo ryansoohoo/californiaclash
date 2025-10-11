@@ -44,6 +44,7 @@ public class CardHomeVisual : MonoBehaviour {
         if (!spot) return;
         if (map.TryGetValue(spot, out var vis)) {
             map.Remove(spot);
+            if (spot.visual == vis) spot.visual = null;
             if (vis) Destroy(vis.gameObject);
         }
     }
@@ -52,6 +53,7 @@ public class CardHomeVisual : MonoBehaviour {
         var vis = Instantiate(visualPrefab, transform);
         if (!vis.rect) vis.rect = vis.GetComponent<RectTransform>();
         vis.Bind(spot);
+        spot.visual = vis;
         map[spot] = vis;
         return vis;
     }
