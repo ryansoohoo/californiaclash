@@ -6,6 +6,7 @@ public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public RectTransform rect;
     public bool isHovered;
     public CardVisualSpot visual;
+    public Gestures gesture;
 
     void Awake() {
         if (!rect) rect = GetComponent<RectTransform>();
