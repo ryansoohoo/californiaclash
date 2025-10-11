@@ -1,7 +1,7 @@
 using UnityEngine;
 using PrimeTween;
 using UnityEngine.EventSystems;
-
+using TMPro;
 public class CardVisualSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public CardSpot mySpot;
     public RectTransform rect;
@@ -13,6 +13,7 @@ public class CardVisualSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     Tween tweenScale;
     bool spawned;
     Vector3 originalScale = Vector3.one;
+    public TextMeshProUGUI text;
 
     public void Bind(CardSpot s) {
         mySpot = s;
