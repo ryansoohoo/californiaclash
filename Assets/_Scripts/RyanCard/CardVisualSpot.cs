@@ -10,6 +10,7 @@ public class CardVisualSpot : MonoBehaviour {
     public TextMeshProUGUI rightText;
     public Image image;
     public RawImage cardImage;
+    public Image selectedX;
     [SerializeField] float duration = 0.2f;
     [SerializeField] Ease ease = Ease.InOutSine;
     [SerializeField] float hoverLift = 12f;

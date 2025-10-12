@@ -4,6 +4,7 @@ using UnityEngine;
 public class CardHome : MonoBehaviour {
     public static CardHome Instance { get; private set; }
     [SerializeField] RectTransform container;
+    [SerializeField] CardSpot selectedCard;
     [SerializeField] List<RectTransform> items;
     [SerializeField] float itemWidth = 0f;
     [SerializeField] float baseGap = 12f;
@@ -56,7 +57,12 @@ public class CardHome : MonoBehaviour {
         if (idx != _lastHoverIndex) { _lastHoverIndex = idx; Layout(); }
     }
 
-    public void SelectCard(CardSpot spot) { }
+    public void SelectCard(CardSpot spot) {
+        if(selectedCard)
+            selectedCard.visual.selectedX.enabled = false;
+        spot.visual.selectedX.enabled = true;
+        selectedCard = spot;
+    }
 
     public void Layout() {
         if (!_rt) _rt = GetComponent<RectTransform>();
