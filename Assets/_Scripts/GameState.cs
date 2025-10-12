@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
     public EGameState gameState;
 
     public List<EGestures> gestures;
     public CardManager cardManager;
-
+    public Button submitButton;
+    public CardHome home;
     public void Start() {
         AddCard(EGestures.Rock);
         AddCard(EGestures.Paper);
@@ -20,6 +22,12 @@ public class GameState : MonoBehaviour {
 
     public void Update() {
         
+    }
+
+    public void SubmitSelectedCard() {
+        if (cardManager.selectedCard == null)
+            return;
+
     }
 }
 

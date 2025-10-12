@@ -11,7 +11,7 @@ public class CardManager : MonoBehaviour {
     [SerializeField] int initialCount = 0;
     public GestureSprites gestureSprites;
     readonly List<CardSpot> spots = new List<CardSpot>(128);
-
+    public CardSpot selectedCard;
     void Awake() {
         if(Instance==null)
             Instance = this;

@@ -14,27 +14,38 @@ public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!rect) rect = GetComponent<RectTransform>();
         if (!cardHome) cardHome = CardHome.Instance;
     }
+
     void OnEnable() {
         if (!rect) rect = GetComponent<RectTransform>();
         if (!cardHome) cardHome = CardHome.Instance;
         if (cardHome && rect) cardHome.AddItem(rect);
     }
+
     void OnDisable() {
         if (cardHome && rect) cardHome.RemoveItem(rect);
     }
+
     public void OnPointerEnter(PointerEventData eventData) {
         isHovered = true;
         if (cardHome) cardHome.Layout();
-        visual.OnHover();
+        if (visual) visual.OnHover();
     }
+
     public void OnPointerExit(PointerEventData eventData) {
         isHovered = false;
         if (cardHome) cardHome.Layout();
-        visual.OffHover();
+        if (visual) visual.OffHover();
     }
 
     public void OnPointerDown(PointerEventData eventData) {
-        isSelected = true;
-        if (cardHome) cardHome.SelectCard(this);
+        if (visual) visual.PlayPointerDownShake();
+        if (isSelected) {
+            isSelected = false;
+            if (cardHome) cardHome.DeselectCard(this);
+        }
+        else {
+            isSelected = true;
+            if (cardHome) cardHome.SelectCard(this);
+        }
     }
 }

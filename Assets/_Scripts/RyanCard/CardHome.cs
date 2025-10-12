@@ -57,11 +57,21 @@ public class CardHome : MonoBehaviour {
         if (idx != _lastHoverIndex) { _lastHoverIndex = idx; Layout(); }
     }
 
+    //from card spot
     public void SelectCard(CardSpot spot) {
         if(selectedCard)
             selectedCard.visual.selectedX.enabled = false;
         spot.visual.selectedX.enabled = true;
         selectedCard = spot;
+        CardManager.Instance.selectedCard = spot;
+    }
+    //from card spot
+    public void DeselectCard(CardSpot spot) {
+        if (selectedCard)
+            selectedCard.visual.selectedX.enabled = false;
+        spot.visual.selectedX.enabled = false;
+        selectedCard = null;
+        CardManager.Instance.selectedCard = null;
     }
 
     public void Layout() {

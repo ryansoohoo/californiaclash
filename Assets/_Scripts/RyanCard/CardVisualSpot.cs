@@ -15,11 +15,14 @@ public class CardVisualSpot : MonoBehaviour {
     [SerializeField] Ease ease = Ease.InOutSine;
     [SerializeField] float hoverLift = 12f;
     [SerializeField] float hoverScaleMultiplier = 1.06f;
+    [SerializeField] float clickShakeMultiplier = 1.08f;
+    [SerializeField] float clickShakeDuration = 0.12f;
     Vector2 lastTarget;
     Vector2 hoverOffset;
     Tween tweenX;
     Tween tweenY;
     Tween tweenScale;
+    Tween tweenClick;
     bool spawned;
     bool isHovered;
     Vector3 originalScale = Vector3.one;
@@ -98,5 +101,12 @@ public class CardVisualSpot : MonoBehaviour {
         if (tweenScale.isAlive) tweenScale.Stop();
         tweenScale = Tween.LocalScale(rect, originalScale, duration, ease);
         AnimateTo(ComputeTarget());
+    }
+
+    public void PlayPointerDownShake() {
+        if (!rect) return;
+        var baseScale = isHovered ? originalScale * hoverScaleMultiplier : originalScale;
+        if (tweenClick.isAlive) tweenClick.Stop();
+        tweenClick = Tween.LocalScale(rect, baseScale * clickShakeMultiplier, clickShakeDuration, ease, cycles: 2, cycleMode: CycleMode.Yoyo);
     }
 }
