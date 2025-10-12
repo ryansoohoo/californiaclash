@@ -1,17 +1,15 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using UnityEngine;
 
-public struct GestureData {
-    public Gestures gesture;
-    public List<Gestures> wins;
-    public List<Gestures> loses;
-    public List<Gestures> ties;
+public readonly struct GestureData {
+    public readonly Gestures gesture;
+    public readonly HashSet<Gestures> wins;
+    public readonly HashSet<Gestures> loses; // keep original name for compatibility
+    public readonly HashSet<Gestures> ties;
 
-    public GestureData(Gestures g, List<Gestures> w, List<Gestures> l, List<Gestures> t) {
+    public GestureData(Gestures g, IEnumerable<Gestures> w, IEnumerable<Gestures> l, IEnumerable<Gestures> t) {
         gesture = g;
-        wins = w;
-        loses = l;
-        ties = t;
+        wins = w != null ? new HashSet<Gestures>(w) : new HashSet<Gestures>();
+        loses = l != null ? new HashSet<Gestures>(l) : new HashSet<Gestures>();
+        ties = t != null ? new HashSet<Gestures>(t) : new HashSet<Gestures>();
     }
 }
