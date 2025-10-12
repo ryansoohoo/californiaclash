@@ -37,10 +37,12 @@ public class CardManager : MonoBehaviour {
         moveTween = Tween.Position(tr, target, 0.25f, Ease.InOutQuad);
         selectedCard.GetComponent<CardSpot>().isSelected = false;
         selectedCard.GetComponent<CardSpot>().visual.selectedX.enabled = false;
+        selectedCard.GetComponent<CardSpot>().isJousting = true;
     }
 
     public void EndJoust() {
         AddCard(joustingCard);
+        joustingCard.isJousting = false;
         joustingCard = null;
     }
 

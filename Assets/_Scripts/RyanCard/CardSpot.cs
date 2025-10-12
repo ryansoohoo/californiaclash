@@ -9,7 +9,7 @@ public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public EGestures gesture;
     public int cardIndex = -1;
     public bool isSelected;
-
+    public bool isJousting;
     void Awake() {
         if (!rect) rect = GetComponent<RectTransform>();
     }
@@ -27,19 +27,25 @@ public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
+        if (isJousting)
+            return;
         isHovered = true;
         if (cardHome) cardHome.Layout();
         if (visual) visual.OnHover();
     }
 
     public void OnPointerExit(PointerEventData eventData) {
+        if (isJousting)
+            return;
         isHovered = false;
         if (cardHome) cardHome.Layout();
         if (visual) visual.OffHover();
     }
 
     public void OnPointerDown(PointerEventData eventData) {
-        if(!isSelected)
+        if (isJousting)
+            return;
+        if (!isSelected)
             CardManager.Instance.DeselectAllCards();
         if (visual) visual.PlayPointerDownShake();
         if (isSelected) {
