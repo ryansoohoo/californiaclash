@@ -1,60 +1,111 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using TMPro;
 
-public class GestureWinTieTracker : MonoBehaviour
+public sealed class GestureWinTieTracker : MonoBehaviour
 {
     [SerializeField] private TMP_Text targetText;
-    [SerializeField] private Color winColor = Color.green;
+    [SerializeField] private Color firstGestureColor = Color.green;
+    [SerializeField] private Color secondGestureColor = Color.red;
     [SerializeField] private Color tieColor = Color.yellow;
 
-    private readonly HashSet<(EGestures, EGestures)> loggedCombinations = new HashSet<(EGestures, EGestures)>();
-    private readonly List<(EGestures, EGestures, int)> outcomes = new List<(EGestures, EGestures, int)>();
+    private readonly HashSet<(EGestures, EGestures)> logged = new HashSet<(EGestures, EGestures)>();
+    private readonly List<(EGestures, EGestures, int)> results = new List<(EGestures, EGestures, int)>(128);
+    private static readonly Dictionary<EGestures, HashSet<EGestures>> Wins = new Dictionary<EGestures, HashSet<EGestures>>
+    {
+        { EGestures.FYou, new HashSet<EGestures>{ EGestures.OK, EGestures.Nose } },
+        { EGestures.Scissors, new HashSet<EGestures>{ EGestures.FYou, EGestures.OK, EGestures.Paper, EGestures.Nose } },
+        { EGestures.OK, new HashSet<EGestures>{ EGestures.Paper, EGestures.Peace } },
+        { EGestures.Gun, new HashSet<EGestures>{ EGestures.FYou, EGestures.Scissors, EGestures.OK, EGestures.Paper, EGestures.Nose, EGestures.Rock, EGestures.Boo } },
+        { EGestures.Paper, new HashSet<EGestures>{ EGestures.Nose, EGestures.Peace, EGestures.Rock } },
+        { EGestures.Nose, new HashSet<EGestures>{ EGestures.Peace, EGestures.Rock, EGestures.Boo } },
+        { EGestures.Peace, new HashSet<EGestures>{ EGestures.Scissors, EGestures.Gun } },
+        { EGestures.Rock, new HashSet<EGestures>{ EGestures.FYou, EGestures.Scissors, EGestures.Boo } },
+        { EGestures.Boo, new HashSet<EGestures>{ EGestures.FYou, EGestures.Scissors, EGestures.OK } }
+    };
+    private static readonly Dictionary<EGestures, HashSet<EGestures>> Ties = new Dictionary<EGestures, HashSet<EGestures>>
+    {
+        { EGestures.FYou, new HashSet<EGestures>{ EGestures.FYou } },
+        { EGestures.Scissors, new HashSet<EGestures>{ EGestures.Scissors } },
+        { EGestures.OK, new HashSet<EGestures>{ EGestures.OK } },
+        { EGestures.Gun, new HashSet<EGestures>() },
+        { EGestures.Paper, new HashSet<EGestures>{ EGestures.Paper } },
+        { EGestures.Nose, new HashSet<EGestures>{ EGestures.Nose } },
+        { EGestures.Peace, new HashSet<EGestures>{ EGestures.FYou, EGestures.Peace, EGestures.Rock, EGestures.Boo } },
+        { EGestures.Rock, new HashSet<EGestures>{ EGestures.OK, EGestures.Peace, EGestures.Rock } },
+        { EGestures.Boo, new HashSet<EGestures>{ EGestures.Peace, EGestures.Boo } }
+    };
 
     void Start()
     {
-        CheckAllCombinations();
-        PrintCombinations();
-        UpdateText();
+        ScanRPS();
+        UpdateOutputs();
     }
 
-    void CheckAllCombinations()
+    public void ScanExtended()
     {
-        for (int i = 0; i < GestureOutcome.GestureCount; i++)
+        for (int i = 0; i < 9; i++)
         {
-            for (int j = 0; j < GestureOutcome.GestureCount; j++)
+            for (int j = 0; j < 9; j++)
             {
                 var a = (EGestures)i;
                 var b = (EGestures)j;
-                int outcome = GestureOutcome.OutcomeFromTable((EGestures)i, (EGestures)j);
-                if (outcome == 1 || outcome == 0)
-                {
-                    if (!loggedCombinations.Contains((a, b)))
-                    {
-                        loggedCombinations.Add((a, b));
-                        outcomes.Add((a, b, outcome));
-                    }
-                }
+                if ((a == EGestures.Rock || a == EGestures.Paper || a == EGestures.Scissors) && (b == EGestures.Rock || b == EGestures.Paper || b == EGestures.Scissors)) continue;
+                int outcome = Outcome(a, b);
+                if (outcome < 0) continue;
+                if (logged.Add((a, b))) results.Add((a, b, outcome));
+            }
+        }
+        UpdateOutputs();
+    }
+
+    void ScanRPS()
+    {
+        var set = new[] { EGestures.Rock, EGestures.Paper, EGestures.Scissors };
+        for (int i = 0; i < set.Length; i++)
+        {
+            for (int j = 0; j < set.Length; j++)
+            {
+                var a = set[i];
+                var b = set[j];
+                int outcome = Outcome(a, b);
+                if (outcome < 0) continue;
+                if (logged.Add((a, b))) results.Add((a, b, outcome));
             }
         }
     }
 
-    void PrintCombinations()
+    int Outcome(EGestures a, EGestures b)
     {
-        foreach (var combo in outcomes)
-            Debug.Log($"{combo.Item1} vs {combo.Item2} : {(combo.Item3 == 1 ? "Win" : "Tie")}");
+        if (a.Equals(b)) return 0;
+        if (Wins.TryGetValue(a, out var w) && w != null && w.Contains(b)) return 1;
+        if (Ties.TryGetValue(a, out var t) && t != null && t.Contains(b)) return 0;
+        return -1;
     }
 
-    void UpdateText()
+    void UpdateOutputs()
     {
-        if (targetText == null) return;
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        foreach (var combo in outcomes)
+        var sb = new StringBuilder(results.Count * 24);
+        for (int k = 0; k < results.Count; k++)
         {
-            Color color = combo.Item3 == 1 ? winColor : tieColor;
-            string hex = ColorUtility.ToHtmlStringRGB(color);
-            sb.Append($"<color=#{hex}>{combo.Item1} vs {combo.Item2} : {(combo.Item3 == 1 ? "Win" : "Tie")}</color>\n");
+            var r = results[k];
+            if (r.Item3 == 1)
+            {
+                var hexA = ColorUtility.ToHtmlStringRGB(firstGestureColor);
+                var hexB = ColorUtility.ToHtmlStringRGB(secondGestureColor);
+                var line = $"<color=#{hexA}>{r.Item1}</color> beat <color=#{hexB}>{r.Item2}</color>\n";
+                sb.Append(line);
+                Debug.Log($"{r.Item1} beat {r.Item2}");
+            }
+            else
+            {
+                var hex = ColorUtility.ToHtmlStringRGB(tieColor);
+                var line = $"<color=#{hex}>{r.Item1}</color> tie <color=#{hex}>{r.Item2}</color>\n";
+                sb.Append(line);
+                Debug.Log($"{r.Item1} tie {r.Item2}");
+            }
         }
-        targetText.text = sb.ToString();
+        if (targetText != null) targetText.text = sb.ToString();
     }
 }
