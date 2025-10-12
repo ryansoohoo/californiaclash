@@ -7,8 +7,8 @@ public class CardHomeVisual : MonoBehaviour {
     readonly Dictionary<CardSpot, CardVisualSpot> map = new Dictionary<CardSpot, CardVisualSpot>(128);
     static readonly List<CardSpot> tempSpots = new List<CardSpot>(256);
     static readonly List<CardSpot> tempKeys = new List<CardSpot>(256);
-    void Awake() {
-        if (!home) home = CardHome.Instance;
+    void Start() {
+        if (!home) home = CardManager.Instance.cardHome;
     }
     void OnEnable() {
         SyncFromHome();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour {
     public static CardManager Instance;
-    [SerializeField] CardHome cardHome;
+    public CardHome cardHome;
     [SerializeField] CardSpot cardSpotPrefab;
     [SerializeField] CardHomeVisual visualHome;
     [SerializeField] CardVisualSpot visualPrefab;
@@ -15,7 +15,6 @@ public class CardManager : MonoBehaviour {
     void Awake() {
         if (Instance == null)
             Instance = this;
-        if (!cardHome) cardHome = CardHome.Instance;
         if (visualHome && !visualHome.home) visualHome.home = cardHome;
         if (visualHome && !visualHome.visualPrefab) visualHome.visualPrefab = visualPrefab;
         if (visualHome) visualHome.SyncFromHome();

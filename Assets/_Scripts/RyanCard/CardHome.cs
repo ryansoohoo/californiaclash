@@ -2,7 +2,6 @@
 using UnityEngine;
 
 public class CardHome : MonoBehaviour {
-    public static CardHome Instance { get; private set; }
     [SerializeField] RectTransform container;
     [SerializeField] CardSpot selectedCard;
     [SerializeField] List<RectTransform> items;
@@ -40,7 +39,6 @@ public class CardHome : MonoBehaviour {
     }
 
     void Awake() {
-        if (Instance == null) Instance = this;
         if (items == null) items = new List<RectTransform>(8);
     }
 

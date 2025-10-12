@@ -153,7 +153,7 @@ MonoBehaviour:
   gestures: 
   cardManager: {fileID: 2027059865}
   submitButton: {fileID: 1113166436}
-  home: {fileID: 0}
+  home: {fileID: 1192160999}
 --- !u!4 &28464413
 Transform:
   m_ObjectHideFlags: 0

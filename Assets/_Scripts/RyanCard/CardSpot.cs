@@ -12,12 +12,13 @@ public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Awake() {
         if (!rect) rect = GetComponent<RectTransform>();
-        if (!cardHome) cardHome = CardHome.Instance;
+    }
+    public void Start() {
+        if (!cardHome) cardHome = CardManager.Instance.cardHome;
     }
 
     void OnEnable() {
         if (!rect) rect = GetComponent<RectTransform>();
-        if (!cardHome) cardHome = CardHome.Instance;
         if (cardHome && rect) cardHome.AddItem(rect);
     }
 
