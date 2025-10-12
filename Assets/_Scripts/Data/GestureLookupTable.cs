@@ -55,8 +55,8 @@ public static class GestureLookupTable {
             [Gestures.Boo] = new GestureData(
                 Gestures.Boo,
                 new[] { Gestures.FYou, Gestures.Scissors, Gestures.OK },
-                new[] { Gestures.Peace },
-                new[] { Gestures.Gun, Gestures.Paper, Gestures.Nose, Gestures.Rock, Gestures.Boo }
+                new[] { Gestures.Gun, Gestures.Paper, Gestures.Nose, Gestures.Rock },
+                new[] { Gestures.Peace, Gestures.Boo }
             ),
         };
 }

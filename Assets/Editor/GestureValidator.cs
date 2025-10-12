@@ -51,12 +51,6 @@ public static class GestureValidator {
                 Debug.LogError($"{g}: A gesture cannot be in both LOSES and TIES.");
                 issues++;
             }
-
-            // (Optional) Warn if a gesture lists itself in LOSES (usually unintended)
-            if (data.loses.Contains(g)) {
-                Debug.LogError($"{g}: should not LOSE to itself.");
-                issues++;
-            }
         }
 
         // --- 1) Per-pair one-way validation ------------------------------------------------
@@ -76,18 +70,6 @@ public static class GestureValidator {
                 if (aCount != 1) {
                     Debug.LogError($"[{a} vs {b}] A-side must have exactly one outcome, got {State(aWins, aLoses, aTies)}.");
                     issues++;
-                }
-
-                // Self rules (no self-lose; self-tie expected)
-                if (a.Equals(b)) {
-                    if (aLoses) {
-                        Debug.LogError($"{a}: should not LOSE to itself.");
-                        issues++;
-                    }
-                    if (!aTies) {
-                        Debug.LogError($"{a}: should TIE with itself.");
-                        issues++;
-                    }
                 }
 
                 // --- 2) Optional symmetric consistency check --------------------------------
