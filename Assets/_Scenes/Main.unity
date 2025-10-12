@@ -1011,12 +1011,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardHome
   container: {fileID: 1192160996}
   items: []
-  itemWidth: 0
-  baseGap: 8
+  itemWidth: 75
+  baseGap: 0
   sidePadding: 0
   anchoredY: 0
-  minGap: -200
-  hoverExtraGap: 12
+  minGap: -75
+  hoverExtraGap: 32
 --- !u!1 &1216676332
 GameObject:
   m_ObjectHideFlags: 0
