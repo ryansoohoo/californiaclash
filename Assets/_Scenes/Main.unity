@@ -216,10 +216,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeProfile: {fileID: 11400000, guid: 7bbe35cdf5d69e14abbb03eccedaa5bd, type: 2}
   isEnabled: 1
-  patternIndex: 1
-  ditherThreshold: 3.53
-  ditherStrength: 1.37
-  ditherScale: 4.67
+  patternIndex: 2
+  ditherThreshold: 19.58
+  ditherStrength: 1.55
+  ditherScale: 1.76
 --- !u!114 &172166378
 MonoBehaviour:
   m_ObjectHideFlags: 0
