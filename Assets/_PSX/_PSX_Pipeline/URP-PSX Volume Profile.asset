@@ -82,55 +82,11 @@ MonoBehaviour:
   m_Name: URP-PSX Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 169896938054019971}
   - {fileID: -2649047749314681680}
   - {fileID: -758010384845797820}
   - {fileID: 7476911754340999965}
   - {fileID: -8329270711505626153}
   - {fileID: 4591442706064900503}
---- !u!114 &169896938054019971
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32eb3b8fb939d9b41b04b5621e6d36dd, type: 3}
-  m_Name: Fog
-  m_EditorClassIdentifier: 
-  active: 1
-  fogDensity:
-    m_OverrideState: 1
-    m_Value: 15.7
-  fogDistance:
-    m_OverrideState: 1
-    m_Value: 34
-  fogColor:
-    m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 0}
-  ambientColor:
-    m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 0}
-  fogNear:
-    m_OverrideState: 0
-    m_Value: 0
-  fogFar:
-    m_OverrideState: 0
-    m_Value: 81.3
-  fogAltScale:
-    m_OverrideState: 0
-    m_Value: 10
-  fogThinning:
-    m_OverrideState: 0
-    m_Value: 458
-  noiseScale:
-    m_OverrideState: 1
-    m_Value: 843
-  noiseStrength:
-    m_OverrideState: 1
-    m_Value: 0.029
 --- !u!114 &4591442706064900503
 MonoBehaviour:
   m_ObjectHideFlags: 3

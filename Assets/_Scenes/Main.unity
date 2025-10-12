@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.124
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
@@ -193,7 +193,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 172166380}
-  - component: {fileID: 172166379}
   - component: {fileID: 172166378}
   - component: {fileID: 172166377}
   - component: {fileID: 172166376}
@@ -256,30 +255,6 @@ MonoBehaviour:
   widthPixelation: 512
   heightPixelation: 512
   colorPrecision: 16
---- !u!114 &172166379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172166375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60add0cab76d469cbdad4b80314cb093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeProfile: {fileID: 11400000, guid: 7bbe35cdf5d69e14abbb03eccedaa5bd, type: 2}
-  isEnabled: 1
-  fogDensity: 15.7
-  fogDistance: 34
-  fogNear: 0
-  fogFar: 81.3
-  fogAltScale: 10
-  fogThinning: 458
-  noiseScale: 843
-  noiseStrength: 0.029
-  fogColor: {r: 0, g: 0, b: 0, a: 0}
-  ambientColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &172166380
 Transform:
   m_ObjectHideFlags: 0
@@ -532,8 +507,8 @@ Camera:
   m_GameObject: {fileID: 344227762}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
