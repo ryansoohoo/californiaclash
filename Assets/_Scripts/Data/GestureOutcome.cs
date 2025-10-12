@@ -5,7 +5,7 @@ public static class GestureOutcome {
     /// One-way lookup: only consults A's table entry.
     /// Returns: 1 (A wins), 0 (tie/undefined), -1 (A loses).
     /// </summary>
-    public static int OutcomeFromTable(Gestures a, Gestures b) {
+    public static int OutcomeFromTable(EGestures a, EGestures b) {
         if (a == b) return 0;
 
         if (!GestureLookupTable.Table.TryGetValue(a, out var dataA))

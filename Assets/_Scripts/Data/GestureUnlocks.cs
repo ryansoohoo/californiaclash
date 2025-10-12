@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 /// Starts with Rock–Paper–Scissors and expands to 5, 7, then 9 gestures.
 public static class GestureUnlocks {
-    static readonly Gestures[] Stage1 = { Gestures.Rock, Gestures.Scissors, Gestures.Paper };
-    static readonly Gestures[] Stage2 = { Gestures.Rock, Gestures.FYou, Gestures.Scissors, Gestures.Gun, Gestures.Paper };
-    static readonly Gestures[] Stage3 = { Gestures.Rock, Gestures.FYou, Gestures.Scissors, Gestures.OK, Gestures.Gun, Gestures.Paper, Gestures.Peace };
-    static readonly Gestures[] Stage4 = { Gestures.Rock, Gestures.Boo, Gestures.FYou, Gestures.Scissors, Gestures.OK, Gestures.Gun, Gestures.Paper, Gestures.Nose, Gestures.Peace };
+    static readonly EGestures[] Stage1 = { EGestures.Rock, EGestures.Scissors, EGestures.Paper };
+    static readonly EGestures[] Stage2 = { EGestures.Rock, EGestures.FYou, EGestures.Scissors, EGestures.Gun, EGestures.Paper };
+    static readonly EGestures[] Stage3 = { EGestures.Rock, EGestures.FYou, EGestures.Scissors, EGestures.OK, EGestures.Gun, EGestures.Paper, EGestures.Peace };
+    static readonly EGestures[] Stage4 = { EGestures.Rock, EGestures.Boo, EGestures.FYou, EGestures.Scissors, EGestures.OK, EGestures.Gun, EGestures.Paper, EGestures.Nose, EGestures.Peace };
 
-    public static List<Gestures> GetStage(int stage) {
+    public static List<EGestures> GetStage(int stage) {
         int s = Mathf.Clamp(stage, 1, 4);
-        Gestures[] src = s == 1 ? Stage1 : s == 2 ? Stage2 : s == 3 ? Stage3 : Stage4;
-        var list = new List<Gestures>(src.Length);
+        EGestures[] src = s == 1 ? Stage1 : s == 2 ? Stage2 : s == 3 ? Stage3 : Stage4;
+        var list = new List<EGestures>(src.Length);
         list.AddRange(src);
         return list;
     }

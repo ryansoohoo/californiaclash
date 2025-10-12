@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 
 public readonly struct GestureData {
-    public readonly Gestures gesture;
-    public readonly HashSet<Gestures> wins;
-    public readonly HashSet<Gestures> loses; // keep original name for compatibility
-    public readonly HashSet<Gestures> ties;
+    public readonly EGestures gesture;
+    public readonly HashSet<EGestures> wins;
+    public readonly HashSet<EGestures> loses; // keep original name for compatibility
+    public readonly HashSet<EGestures> ties;
 
-    public GestureData(Gestures g, IEnumerable<Gestures> w, IEnumerable<Gestures> l, IEnumerable<Gestures> t) {
+    public GestureData(EGestures g, IEnumerable<EGestures> w, IEnumerable<EGestures> l, IEnumerable<EGestures> t) {
         gesture = g;
-        wins = w != null ? new HashSet<Gestures>(w) : new HashSet<Gestures>();
-        loses = l != null ? new HashSet<Gestures>(l) : new HashSet<Gestures>();
-        ties = t != null ? new HashSet<Gestures>(t) : new HashSet<Gestures>();
+        wins = w != null ? new HashSet<EGestures>(w) : new HashSet<EGestures>();
+        loses = l != null ? new HashSet<EGestures>(l) : new HashSet<EGestures>();
+        ties = t != null ? new HashSet<EGestures>(t) : new HashSet<EGestures>();
     }
 }

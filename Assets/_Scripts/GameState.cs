@@ -1,22 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameState : MonoBehaviour
-{
-    public List<Gestures> gestures;
+public class GameState : MonoBehaviour {
+    public EGameState gameState;
+
+    public List<EGestures> gestures;
     public CardManager cardManager;
 
-    public void Start()
-    {
-        AddCard(Gestures.Rock);
-        AddCard(Gestures.Paper);
-        AddCard(Gestures.Scissors);
+    public void Start() {
+        AddCard(EGestures.Rock);
+        AddCard(EGestures.Paper);
+        AddCard(EGestures.Scissors);
     }
 
-    public void AddCard(Gestures gesture)
-    {
+    public void AddCard(EGestures gesture) {
         gestures.Add(gesture);
         cardManager.AddCard(gesture);
+    }
+
+    public void Update() {
+        
     }
 }
 

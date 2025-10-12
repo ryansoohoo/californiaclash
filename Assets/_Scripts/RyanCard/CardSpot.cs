@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler {
     public CardHome cardHome;
     public RectTransform rect;
     public bool isHovered;
     public CardVisualSpot visual;
-    public Gestures gesture;
+    public EGestures gesture;
     public int cardIndex = -1;
+    public bool isSelected;
+
     void Awake() {
         if (!rect) rect = GetComponent<RectTransform>();
         if (!cardHome) cardHome = CardHome.Instance;
@@ -23,9 +25,16 @@ public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData) {
         isHovered = true;
         if (cardHome) cardHome.Layout();
+        visual.OnHover();
     }
     public void OnPointerExit(PointerEventData eventData) {
         isHovered = false;
         if (cardHome) cardHome.Layout();
+        visual.OffHover();
+    }
+
+    public void OnPointerDown(PointerEventData eventData) {
+        isSelected = true;
+        if (cardHome) cardHome.SelectCard(this);
     }
 }

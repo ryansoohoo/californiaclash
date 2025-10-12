@@ -16,7 +16,7 @@ public static class GestureValidator {
         int issues = 0;
 
         // --- 0) Basic table sanity ----------------------------------------------------------
-        var allGestures = Enum.GetValues(typeof(Gestures)).Cast<Gestures>().ToArray();
+        var allGestures = Enum.GetValues(typeof(EGestures)).Cast<EGestures>().ToArray();
 
         // Check that we have an entry for every gesture
         foreach (var g in allGestures) {

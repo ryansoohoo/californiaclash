@@ -22,10 +22,10 @@ public class CardManager : MonoBehaviour {
     }
 
     public void AddCardDebug() {
-        AddCard((Gestures)RandomNumberGenerator.GetInt32(0, 9));
+        AddCard((EGestures)RandomNumberGenerator.GetInt32(0, 9));
     }
 
-    public CardSpot AddCard(Gestures gesture) {
+    public CardSpot AddCard(EGestures gesture) {
         if (!cardHome || !cardSpotPrefab) return null;
         var s = Instantiate(cardSpotPrefab, cardHome.transform);
         var spot = s.GetComponent<CardSpot>();
