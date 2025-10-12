@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 28464413}
   - component: {fileID: 28464412}
   - component: {fileID: 28464414}
+  - component: {fileID: 28464415}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -182,8 +183,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestureWinTieTracker
   targetText: {fileID: 1034569563}
-  winColor: {r: 0.18752226, g: 0.8113208, b: 0.18752226, a: 1}
+  firstGestureColor: {r: 0, g: 1, b: 0, a: 1}
+  secondGestureColor: {r: 1, g: 0, b: 0, a: 1}
   tieColor: {r: 0.8962264, g: 0.8474134, b: 0.29169634, a: 1}
+--- !u!114 &28464415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28464411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878ba3024dc19e74296e1bf86fadc3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  bgmMixer: {fileID: 0}
+  sfxMixer: {fileID: 0}
+  defaultMusic: {fileID: 0}
+  bgmFadeSeconds: 1
+  enemyMusicTable:
+  - enemy: 1
+    clip: {fileID: 8300000, guid: bff8965e83ee24040806baf4cd9d16b7, type: 3}
+    priority: 0
+  - enemy: 2
+    clip: {fileID: 8300000, guid: 2b0954b380041c94fb7b89800bf4d1d5, type: 3}
+    priority: 0
+  - enemy: 3
+    clip: {fileID: 8300000, guid: e2b273de348c8924e8c4103e9c651375, type: 3}
+    priority: 0
+  sfxRoundWin: {fileID: 0}
+  sfxRoundLose: {fileID: 0}
+  sfxRoundTie: {fileID: 0}
+  sfxGameWin: {fileID: 0}
+  sfxGameLose: {fileID: 0}
+  sfxPoolSize: 10
+  sfxPitchJitter: 0.05
+  creepyClips:
+  - {fileID: 8300000, guid: e204091e0ce3ce24b99a09119cdfdd66, type: 3}
+  - {fileID: 8300000, guid: 3dc541be158f14f48974e5e912af1c01, type: 3}
+  - {fileID: 8300000, guid: e06ae7b4aaf365348bc569719b4cb779, type: 3}
+  creepyIntervalRange: {x: 20, y: 60}
+  creepyVolume: 0.6
+  creepyEnabled: 1
 --- !u!1 &172166375
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,13 +3044,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080309213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0.627451}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.34117648}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
