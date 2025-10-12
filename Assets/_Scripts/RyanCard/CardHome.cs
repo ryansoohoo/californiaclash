@@ -67,11 +67,15 @@ public class CardHome : MonoBehaviour {
     }
     //from card spot
     public void DeselectCard(CardSpot spot) {
-        if (selectedCard)
+        if (selectedCard) {
             selectedCard.visual.selectedX.enabled = false;
+            selectedCard.isSelected = false;
+        }
+        if (CardManager.Instance.selectedCard)
+            CardManager.Instance.selectedCard.isSelected = false;
+
         spot.visual.selectedX.enabled = false;
         selectedCard = null;
-        CardManager.Instance.selectedCard = null;
     }
 
     public void Layout() {

@@ -13,7 +13,7 @@ public class CardManager : MonoBehaviour {
     readonly List<CardSpot> spots = new List<CardSpot>(128);
     public CardSpot selectedCard;
     void Awake() {
-        if(Instance==null)
+        if (Instance == null)
             Instance = this;
         if (!cardHome) cardHome = CardHome.Instance;
         if (visualHome && !visualHome.home) visualHome.home = cardHome;
@@ -32,7 +32,7 @@ public class CardManager : MonoBehaviour {
         if (!spot) spot = s.gameObject.AddComponent<CardSpot>();
         if (!spot.rect) spot.rect = s.GetComponent<RectTransform>();
         spot.cardHome = cardHome;
-        spot.gesture= gesture;
+        spot.gesture = gesture;
         if (spot.rect) cardHome.AddItem(spot.rect);
         spots.Add(spot);
         if (visualHome) visualHome.AddVisualFor(spot);
@@ -64,5 +64,12 @@ public class CardManager : MonoBehaviour {
 
     public void ClearAll() {
         for (int i = spots.Count - 1; i >= 0; i--) RemoveCardAt(i);
+    }
+
+    public void DeselectAllCards() {
+        foreach (CardSpot spot in spots) {
+            spot.isSelected = false;
+        }
+
     }
 }

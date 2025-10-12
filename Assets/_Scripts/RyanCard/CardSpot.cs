@@ -38,6 +38,8 @@ public class CardSpot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void OnPointerDown(PointerEventData eventData) {
+        if(!isSelected)
+            CardManager.Instance.DeselectAllCards();
         if (visual) visual.PlayPointerDownShake();
         if (isSelected) {
             isSelected = false;
