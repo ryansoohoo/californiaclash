@@ -3,14 +3,18 @@ using System.Security.Cryptography;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour {
+    public static CardManager Instance;
     [SerializeField] CardHome cardHome;
     [SerializeField] CardSpot cardSpotPrefab;
     [SerializeField] CardHomeVisual visualHome;
     [SerializeField] CardVisualSpot visualPrefab;
     [SerializeField] int initialCount = 0;
+    public GestureSprites gestureSprites;
     readonly List<CardSpot> spots = new List<CardSpot>(128);
 
     void Awake() {
+        if(Instance==null)
+            Instance = this;
         if (!cardHome) cardHome = CardHome.Instance;
         if (visualHome && !visualHome.home) visualHome.home = cardHome;
         if (visualHome && !visualHome.visualPrefab) visualHome.visualPrefab = visualPrefab;

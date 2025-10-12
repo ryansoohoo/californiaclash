@@ -9,6 +9,7 @@ public class CardVisualSpot : MonoBehaviour {
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
     public Image image;
+    public RawImage cardImage;
     [SerializeField] float duration = 0.2f;
     [SerializeField] Ease ease = Ease.InOutSine;
     Vector2 lastTarget;
@@ -38,6 +39,7 @@ public class CardVisualSpot : MonoBehaviour {
             if (desired > max) desired = max;
             if (rect.GetSiblingIndex() != desired) rect.SetSiblingIndex(desired);
         }
+        cardImage.texture = CardManager.Instance.gestureSprites.Get(s.gesture).texture;
     }
     void LateUpdate() {
         if (!mySpot || !mySpot.rect || !rect) return;

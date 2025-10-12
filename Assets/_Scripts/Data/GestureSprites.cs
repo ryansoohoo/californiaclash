@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GestureSprites", menuName = "Gestures/Sprite Set")]
-public sealed class GestureSprites : ScriptableObject {
+public class GestureSprites : ScriptableObject {
     [SerializeField] private Sprite[] sprites = new Sprite[9];
 
     public Sprite Get(Gestures gesture) {
