@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using PrimeTween;
 
 public class CardManager : MonoBehaviour {
     public static CardManager Instance;
@@ -12,12 +13,35 @@ public class CardManager : MonoBehaviour {
     public GestureSprites gestureSprites;
     readonly List<CardSpot> spots = new List<CardSpot>(128);
     public CardSpot selectedCard;
+    public RectTransform joustTransform;
+    Tween moveTween;
+    public CardSpot joustingCard;
     void Awake() {
-        if (Instance == null)
-            Instance = this;
+        if (Instance == null) Instance = this;
         if (visualHome && !visualHome.home) visualHome.home = cardHome;
         if (visualHome && !visualHome.visualPrefab) visualHome.visualPrefab = visualPrefab;
         if (visualHome) visualHome.SyncFromHome();
+    }
+
+    public void SubmitSelectedCard() {
+        if (joustingCard)
+            return;
+        if (selectedCard == null || !joustTransform) return;
+        if (moveTween.IsAlive) moveTween.Stop();
+        var spot = selectedCard;
+        joustingCard = selectedCard;
+        var r = spot.GetComponent<RectTransform>();
+        if (r && cardHome) cardHome.RemoveItem(r);
+        var tr = spot.transform;
+        var target = joustTransform.position;
+        moveTween = Tween.Position(tr, target, 0.25f, Ease.InOutQuad);
+        selectedCard.GetComponent<CardSpot>().isSelected = false;
+        selectedCard.GetComponent<CardSpot>().visual.selectedX.enabled = false;
+    }
+
+    public void EndJoust() {
+        AddCard(joustingCard);
+        joustingCard = null;
     }
 
     public void AddCardDebug() {
@@ -33,7 +57,17 @@ public class CardManager : MonoBehaviour {
         spot.cardHome = cardHome;
         spot.gesture = gesture;
         if (spot.rect) cardHome.AddItem(spot.rect);
-        spots.Add(spot);
+        if (!spots.Contains(spot)) spots.Add(spot);
+        if (visualHome) visualHome.AddVisualFor(spot);
+        return spot;
+    }
+
+    public CardSpot AddCard(CardSpot spot) {
+        if (!spot || !cardHome) return null;
+        if (!spot.rect) spot.rect = spot.GetComponent<RectTransform>();
+        spot.cardHome = cardHome;
+        if (spot.rect) cardHome.AddItem(spot.rect);
+        if (!spots.Contains(spot)) spots.Add(spot);
         if (visualHome) visualHome.AddVisualFor(spot);
         return spot;
     }
@@ -49,7 +83,6 @@ public class CardManager : MonoBehaviour {
         if (visualHome) visualHome.RemoveFor(spot);
         if (spot && spot.rect && cardHome) cardHome.RemoveItem(spot.rect);
         spots.RemoveAt(index);
-        if (spot) Destroy(spot.gameObject);
         if (visualHome) visualHome.SyncFromHome();
         return true;
     }
@@ -66,9 +99,6 @@ public class CardManager : MonoBehaviour {
     }
 
     public void DeselectAllCards() {
-        foreach (CardSpot spot in spots) {
-            spot.isSelected = false;
-        }
-
+        foreach (CardSpot spot in spots) spot.isSelected = false;
     }
 }
