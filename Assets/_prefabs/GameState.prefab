@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2154516540517825892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6480749048675063979}
+  - component: {fileID: 8284898443476333467}
+  - component: {fileID: 7766647068088196745}
+  - component: {fileID: 6414802780661403316}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6480749048675063979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154516540517825892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4031, y: 3.02363, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8284898443476333467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154516540517825892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a520f790a0fcdde4889a585fc3c95d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  gameState: 0
+  gestures: 
+  cardManager: {fileID: 0}
+  enemyCards: {fileID: 0}
+  enemy: {fileID: 0}
+  submitButton: {fileID: 0}
+  home: {fileID: 0}
+  level: 0
+  joustBounceOffset: 40
+  joustBounceCycleDuration: 0.24
+  joustClashDuration: 0.2
+  clashAnchor: {fileID: 0}
+--- !u!114 &7766647068088196745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154516540517825892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e26e4d86d5c7645879039594c60d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GestureWinTieTracker
+  targetText: {fileID: 0}
+  firstGestureColor: {r: 0, g: 1, b: 0, a: 1}
+  secondGestureColor: {r: 1, g: 0, b: 0, a: 1}
+  tieColor: {r: 0.8962264, g: 0.8474134, b: 0.29169634, a: 1}
+--- !u!114 &6414802780661403316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154516540517825892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878ba3024dc19e74296e1bf86fadc3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  volumeSlider: {fileID: 0}
+  masterMixer: {fileID: 24100000, guid: b4846be87e5c8644c95d6beaf91eeca4, type: 2}
+  bgmMixer: {fileID: -7555158699717427237, guid: b4846be87e5c8644c95d6beaf91eeca4,
+    type: 2}
+  sfxMixer: {fileID: 1256587311286384930, guid: b4846be87e5c8644c95d6beaf91eeca4,
+    type: 2}
+  defaultMusic: {fileID: 8300000, guid: bff8965e83ee24040806baf4cd9d16b7, type: 3}
+  bgmFadeSeconds: 1
+  enemyMusicTable:
+  - enemy: 1
+    clip: {fileID: 8300000, guid: bff8965e83ee24040806baf4cd9d16b7, type: 3}
+    priority: 0
+  - enemy: 2
+    clip: {fileID: 8300000, guid: 2b0954b380041c94fb7b89800bf4d1d5, type: 3}
+    priority: 0
+  - enemy: 3
+    clip: {fileID: 8300000, guid: e2b273de348c8924e8c4103e9c651375, type: 3}
+    priority: 0
+  sfxRoundWin: {fileID: 8300000, guid: fbe7859f8bd7c7240bb3f15871f458b6, type: 3}
+  sfxRoundLose: {fileID: 8300000, guid: 18f51c7e63cf7fa4983a77071a9e14d5, type: 3}
+  sfxRoundTie: {fileID: 0}
+  sfxGameWin: {fileID: 8300000, guid: ef6d593e2b4a674458db551d8fe01a2f, type: 3}
+  sfxGameLose: {fileID: 8300000, guid: 94ca46440c73a9047a1dd1dab5c734b4, type: 3}
+  sfxPoolSize: 10
+  sfxPitchJitter: 0.05
+  creepyClips:
+  - {fileID: 8300000, guid: e204091e0ce3ce24b99a09119cdfdd66, type: 3}
+  - {fileID: 8300000, guid: 3dc541be158f14f48974e5e912af1c01, type: 3}
+  - {fileID: 8300000, guid: e06ae7b4aaf365348bc569719b4cb779, type: 3}
+  - {fileID: 8300000, guid: 6cd0d69e87d596e468d20f1099257b23, type: 3}
+  - {fileID: 8300000, guid: c2f6ce39b2af21a46b6f9a8d1c9d1885, type: 3}
+  creepyIntervalRange: {x: 20, y: 60}
+  creepyVolume: 0.6
+  creepyEnabled: 1
