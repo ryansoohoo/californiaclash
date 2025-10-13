@@ -2250,13 +2250,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166633606}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.50583214, y: -0, z: -0, w: 0.862632}
-  m_LocalPosition: {x: 0, y: 3.07, z: -4.23}
+  m_LocalRotation: {x: 0.4388971, y: -0.016827796, z: 0.051586274, w: 0.89689744}
+  m_LocalPosition: {x: 0, y: 3.0699997, z: -4.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9191493274606418248}
-  m_LocalEulerAnglesHint: {x: 60.773, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 52.095, y: 1.408, z: 7.272}
 --- !u!114 &1166633608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,8 +2296,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 192.63
+  m_Color: {r: 1, g: 0.10849059, b: 0.10849059, a: 1}
+  m_Intensity: 150
   m_Range: 10.94
   m_SpotAngle: 89.196884
   m_InnerSpotAngle: 59.19685
@@ -2625,9 +2625,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseLookAt
   pivot: {fileID: 1526256575}
-  yawLimits: {x: -60, y: 60}
-  pitchLimits: {x: -20, y: 30}
-  rotationSpeed: 10
+  yawLimits: {x: -20, y: 20}
+  pitchLimits: {x: -50, y: 50}
+  rotationSpeed: 4
   sensitivity: 1
   lockVertical: 0
 --- !u!114 &1766512418
@@ -2643,9 +2643,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseLookAt
   pivot: {fileID: 2011910270}
-  yawLimits: {x: -60, y: 60}
-  pitchLimits: {x: -20, y: 30}
-  rotationSpeed: 10
+  yawLimits: {x: -20, y: 20}
+  pitchLimits: {x: -50, y: 50}
+  rotationSpeed: 4
   sensitivity: 1
   lockVertical: 0
 --- !u!1 &1779849047
