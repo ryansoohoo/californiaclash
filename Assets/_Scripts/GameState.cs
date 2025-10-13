@@ -41,17 +41,19 @@ public class GameState : MonoBehaviour {
         await BounceThreeTimes(a, b, joustBounceOffset, joustBounceCycleDuration);
         enemyCards.joustingCard.UnHide();
         var targetWorld = clashAnchor != null ? clashAnchor.position : ((a != null && b != null) ? (a.position + b.position) * 0.5f : Vector3.zero);
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         await ClashTogether(a, b, joustClashDuration, targetWorld);
-
+        print(cardManager.joustingCard.gesture);
+        print(enemyCards.joustingCard.gesture);
         int outcome = GestureOutcome.OutcomeFromTable(cardManager.joustingCard.gesture, enemyCards.joustingCard.gesture); // Returns: 1 (A wins), 0 (tie/undefined), -1 (A loses).
         Debug.Log(outcome);
-        if (outcome == 0) {
+        if (outcome == 0) {            
             EGestures spot = cardManager.joustingCard.gesture;
             cardManager.AddCard(spot);
-            Destroy(enemyCards.joustingCard);
+            Destroy(cardManager.joustingCard);
             enemyCards.ResetToStartingPositions();
             cardManager.cardHome.Layout();
+            cardManager.cardHome.Show();
         }
         else if (outcome == 1) {
             EGestures spot = cardManager.joustingCard.gesture;
@@ -61,17 +63,17 @@ public class GameState : MonoBehaviour {
             cardManager.AddCard(spot);
             cardManager.cardHome.Layout();
             enemyCards.joustingCard.gameObject.SetActive(true);
-
             enemyCards.ResetToStartingPositions();
+            cardManager.cardHome.Show();
         }
         else if (outcome == -1) {
             CardSpot spot = cardManager.joustingCard;
             cardManager.RemoveCard(spot);
             Destroy(spot);
-            cardManager.EndJoust();
             await Task.Delay(1000);
             enemyCards.ResetToStartingPositions();
             cardManager.cardHome.Layout();
+            cardManager.cardHome.Show();
         }
     }
 

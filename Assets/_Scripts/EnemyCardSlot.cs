@@ -9,10 +9,11 @@ public class EnemyCardSlot : MonoBehaviour
     public EGestures gesture;
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
-    public void ChangeImage(EGestures gesture) {
-        image.texture = CardManager.Instance.gestureSprites.Get(gesture).texture;
-        leftText.text = gesture.ToString();
-        rightText.text = gesture.ToString();
+    public void ChangeImage(EGestures _gesture) {
+        gesture = _gesture;
+        image.texture = CardManager.Instance.gestureSprites.Get(_gesture).texture;
+        leftText.text = _gesture.ToString();
+        rightText.text = _gesture.ToString();
     }
 
     public void Hide() {
