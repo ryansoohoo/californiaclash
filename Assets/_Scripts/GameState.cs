@@ -9,9 +9,10 @@ public class GameState : MonoBehaviour {
     public List<EGestures> gestures;
     public CardManager cardManager;
     public EnemyCards enemyCards;
+    public Enemy enemy;
     public Button submitButton;
     public CardHome home;
-    public int stage = 0;
+    public int level = 0; // 3 levels
     [SerializeField] float joustBounceOffset = 40f;
     [SerializeField] float joustBounceCycleDuration = 0.24f;
     [SerializeField] float joustClashDuration = 0.2f;
@@ -29,19 +30,18 @@ public class GameState : MonoBehaviour {
     }
 
     public async Task STARTJOUST() {
-        await Task.Delay(300);
         enemyCards.HideCards();
         await Task.Delay(300);
         enemyCards.StartJoust();
-        await Task.Delay(1000);
+        await Task.Delay(600);
         enemyCards.LerpRandomEnemyCardToJoust();
-        await Task.Delay(1000);
+        await Task.Delay(600);
         var b = cardManager.joustingCard != null ? cardManager.joustingCard.GetComponent<RectTransform>() : null;
         var a = enemyCards.joustingCard != null ? enemyCards.joustingCard.GetComponent<RectTransform>() : null;
         await BounceThreeTimes(a, b, joustBounceOffset, joustBounceCycleDuration);
         enemyCards.joustingCard.UnHide();
         var targetWorld = clashAnchor != null ? clashAnchor.position : ((a != null && b != null) ? (a.position + b.position) * 0.5f : Vector3.zero);
-        await Task.Delay(1500);
+        await Task.Delay(750);
         await ClashTogether(a, b, joustClashDuration, targetWorld);
         print(cardManager.joustingCard.gesture);
         print(enemyCards.joustingCard.gesture);
@@ -54,29 +54,34 @@ public class GameState : MonoBehaviour {
             cardManager.AddCard(spot);
             Destroy(cardManager.joustingCard);
             enemyCards.ResetToStartingPositions();
-            cardManager.cardHome.Layout();
             cardManager.cardHome.Show();
         }
         else if (outcome == 1) {
             EGestures spot = cardManager.joustingCard.gesture;
             enemyCards.joustingCard.gameObject.SetActive(false);
-            await Task.Delay(1000);
+            await Task.Delay(600);
             Destroy(cardManager.joustingCard);
             cardManager.AddCard(spot);
-            cardManager.cardHome.Layout();
             enemyCards.joustingCard.gameObject.SetActive(true);
             enemyCards.ResetToStartingPositions();
             cardManager.cardHome.Show();
+            cardManager.AddCard(enemy.GetRandomGesture(level));
         }
         else if (outcome == -1) {
             CardSpot spot = cardManager.joustingCard;
             cardManager.RemoveCard(spot);
             Destroy(spot);
-            await Task.Delay(1000);
+            await Task.Delay(600);
             enemyCards.ResetToStartingPositions();
-            cardManager.cardHome.Layout();
             cardManager.cardHome.Show();
         }
+        level++;
+
+        cardManager.cardHome.Layout();
+        await Task.Delay(300);
+        enemyCards.ShuffleCards();
+        enemyCards.RandomizeGesture();
+
     }
 
     async Task BounceThreeTimes(RectTransform a, RectTransform b, float offset, float cycleDuration) {

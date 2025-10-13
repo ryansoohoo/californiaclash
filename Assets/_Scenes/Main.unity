@@ -154,9 +154,10 @@ MonoBehaviour:
   gestures: 
   cardManager: {fileID: 2027059865}
   enemyCards: {fileID: 1086480934}
+  enemy: {fileID: 1888088322}
   submitButton: {fileID: 1113166436}
   home: {fileID: 1958279699}
-  stage: 0
+  level: 0
   joustBounceOffset: 40
   joustBounceCycleDuration: 0.24
   joustClashDuration: 0.2
@@ -2117,6 +2118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!1 &1598055412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7650289818029120510, guid: 7979a65dd2a9bc54c91d5a1425de528b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4769563035259842430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668549192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,6 +2416,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4769563035259842430}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1888088322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598055412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf751451883f6ca48bedb7e0a5310992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1925793749
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,7 +3518,17 @@ PrefabInstance:
       objectReference: {fileID: 1668549194}
     - target: {fileID: 7795132451340030256, guid: 56351e27efd739e4db831838d9794d0c,
         type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1888088322}
+    - target: {fileID: 7795132451340030256, guid: 56351e27efd739e4db831838d9794d0c,
+        type: 3}
       propertyPath: GameState
+      value: 
+      objectReference: {fileID: 28464412}
+    - target: {fileID: 7795132451340030256, guid: 56351e27efd739e4db831838d9794d0c,
+        type: 3}
+      propertyPath: gameState
       value: 
       objectReference: {fileID: 28464412}
     - target: {fileID: 7795132451340030256, guid: 56351e27efd739e4db831838d9794d0c,
@@ -3614,7 +3643,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1166633607}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7650289818029120510, guid: 7979a65dd2a9bc54c91d5a1425de528b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1888088322}
   m_SourcePrefab: {fileID: 100100000, guid: 7979a65dd2a9bc54c91d5a1425de528b, type: 3}
 --- !u!114 &8718688221897044424 stripped
 MonoBehaviour:
