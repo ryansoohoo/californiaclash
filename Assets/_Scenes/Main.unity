@@ -155,6 +155,7 @@ MonoBehaviour:
   cardManager: {fileID: 2027059865}
   submitButton: {fileID: 1113166436}
   home: {fileID: 1192160999}
+  stage: 0
 --- !u!4 &28464413
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,10 +1155,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3514aea42aa574fbcd3d57e4e46f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  GameState: {fileID: 28464412}
   enemyCardSlots:
   - {fileID: 8718688223212077841}
   - {fileID: 8718688221897044424}
   - {fileID: 8718688223162444274}
+  shuffleRandomizeDuration: 1
+  shuffleSteps: 8
+  shuffleReturnDuration: 0.2
+  randomizeGesturesDuringShuffle: 1
 --- !u!1 &870583894
 GameObject:
   m_ObjectHideFlags: 0
@@ -4891,8 +4897,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd749c009cc4a4a409bbbe6ecb2fbc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCardSlot
-  image: {fileID: 8175449720548707531}
+  image: {fileID: 3884743719584114373}
   gesture: 0
+  leftText: {fileID: 2017710043079604919}
+  rightText: {fileID: 4763508877650623057}
 --- !u!1 &8718688223162444273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,8 +4932,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd749c009cc4a4a409bbbe6ecb2fbc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCardSlot
-  image: {fileID: 8175449721434526973}
+  image: {fileID: 3884743720977383155}
   gesture: 0
+  leftText: {fileID: 2017710044464538241}
+  rightText: {fileID: 4763508879075861095}
 --- !u!1 &8718688223212077840
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,8 +4967,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd749c009cc4a4a409bbbe6ecb2fbc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  image: {fileID: 8175449721450626588}
+  image: {fileID: 3884743721027343378}
   gesture: 0
+  leftText: {fileID: 2017710044514175072}
+  rightText: {fileID: 4763508879092271238}
 --- !u!1 &9013130781737667545
 GameObject:
   m_ObjectHideFlags: 0
