@@ -5,6 +5,7 @@ using TMPro;
 public class EnemyCardSlot : MonoBehaviour
 {
     public RawImage image;
+    public RawImage hiddenImage;
     public EGestures gesture;
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;

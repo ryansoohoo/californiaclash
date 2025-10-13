@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -7,16 +8,22 @@ using PrimeTween;
 public class EnemyCards : MonoBehaviour {
     public GameState GameState;
     public List<EnemyCardSlot> enemyCardSlots;
+    public RectTransform joustLocation;
     [SerializeField] float shuffleRandomizeDuration = 1f;
     [SerializeField] int shuffleSteps = 8;
     [SerializeField] float shuffleReturnDuration = 0.2f;
     [SerializeField] bool randomizeGesturesDuringShuffle = true;
+    [SerializeField] float joustTweenDuration = 0.35f;
     List<Vector3> startingPositions;
     Vector3[] tmpTargets;
     int[] tmpPerm;
     Sequence shuffleSeq;
+    Sequence joustSeq;
     List<EGestures> allowedGestures;
     int lastStage = int.MinValue;
+    EnemyCardSlot joustLockedSlot;
+    bool freezeGestures;
+    Coroutine randomizeCR;
 
     void Awake() {
         CacheStartingPositions();
@@ -26,12 +33,30 @@ public class EnemyCards : MonoBehaviour {
 
     void OnDisable() {
         if (shuffleSeq.isAlive) shuffleSeq.Stop();
+        if (joustSeq.isAlive) joustSeq.Stop();
+        if (randomizeCR != null) { StopCoroutine(randomizeCR); randomizeCR = null; }
+        joustLockedSlot = null;
+        freezeGestures = false;
+    }
+
+    public void StartJoust() {
+        ShuffleCardsToRPF();
+    }
+
+    public EnemyCardSlot PickRandomCard() {
         int n = enemyCardSlots != null ? enemyCardSlots.Count : 0;
+        if (n == 0) return null;
+        int valid = 0;
+        for (int i = 0; i < n; i++) if (enemyCardSlots[i] != null) valid++;
+        if (valid == 0) return null;
+        int pick = RandomNumberGenerator.GetInt32(valid);
         for (int i = 0; i < n; i++) {
-            var slot = enemyCardSlots[i];
-            if (slot == null) continue;
-            Tween.StopAll(onTarget: slot.transform);
+            var s = enemyCardSlots[i];
+            if (s == null) continue;
+            if (pick == 0) return s;
+            pick--;
         }
+        return null;
     }
 
     void EnsureTemps() {
@@ -81,14 +106,14 @@ public class EnemyCards : MonoBehaviour {
         EnsureAllowedGestures();
         EnsureTemps();
         RunShuffleAnimation(shuffleRandomizeDuration, shuffleSteps, shuffleReturnDuration, false);
-        if (randomizeGesturesDuringShuffle) StartCoroutine(RandomizeGesturesOverTime(shuffleRandomizeDuration, shuffleSteps));
+        if (randomizeGesturesDuringShuffle && !freezeGestures) randomizeCR = StartCoroutine(RandomizeGesturesOverTime(shuffleRandomizeDuration, shuffleSteps));
     }
 
     void ShuffleCardsToRPF() {
         EnsureAllowedGestures();
         EnsureTemps();
         RunShuffleAnimation(shuffleRandomizeDuration, shuffleSteps, shuffleReturnDuration, true);
-        if (randomizeGesturesDuringShuffle) StartCoroutine(RandomizeGesturesOverTime(shuffleRandomizeDuration, shuffleSteps));
+        if (randomizeGesturesDuringShuffle && !freezeGestures) randomizeCR = StartCoroutine(RandomizeGesturesOverTime(shuffleRandomizeDuration, shuffleSteps));
     }
 
     void RunShuffleAnimation(float randomizeDuration, int steps, float returnDuration, bool finalizeToRPF) {
@@ -132,17 +157,19 @@ public class EnemyCards : MonoBehaviour {
     }
 
     void RandomizeGestures() {
+        if (freezeGestures) return;
         EnsureAllowedGestures();
         int n = enemyCardSlots != null ? enemyCardSlots.Count : 0;
         for (int i = 0; i < n; i++) {
             var slot = enemyCardSlots[i];
-            if (slot == null) continue;
+            if (slot == null || slot == joustLockedSlot) continue;
             int idx = RandomNumberGenerator.GetInt32(allowedGestures.Count);
             slot.ChangeImage(allowedGestures[idx]);
         }
     }
 
     void SetGesturesRPF() {
+        if (freezeGestures) return;
         int n = enemyCardSlots != null ? enemyCardSlots.Count : 0;
         if (n > 0 && enemyCardSlots[0] != null) enemyCardSlots[0].ChangeImage(EGestures.Rock);
         if (n > 1 && enemyCardSlots[1] != null) enemyCardSlots[1].ChangeImage(EGestures.Paper);
@@ -151,12 +178,45 @@ public class EnemyCards : MonoBehaviour {
     }
 
     void RandomizeRange(int fromInclusive, int toExclusive) {
+        if (freezeGestures) return;
         EnsureAllowedGestures();
         for (int i = fromInclusive; i < toExclusive; i++) {
             var slot = enemyCardSlots[i];
-            if (slot == null) continue;
+            if (slot == null || slot == joustLockedSlot) continue;
             int idx = RandomNumberGenerator.GetInt32(allowedGestures.Count);
             slot.ChangeImage(allowedGestures[idx]);
         }
+    }
+
+    Vector2 GetAnchoredTarget(RectTransform card, RectTransform target) {
+        var parentRect = card != null ? card.parent as RectTransform : null;
+        if (card == null || target == null || parentRect == null) return Vector2.zero;
+        var canvas = card.GetComponentInParent<Canvas>();
+        var root = canvas != null ? canvas.rootCanvas : null;
+        Camera cam = null;
+        if (root != null && root.renderMode != RenderMode.ScreenSpaceOverlay) cam = root.worldCamera;
+        var screen = RectTransformUtility.WorldToScreenPoint(cam, target.position);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, screen, cam, out var local);
+        return local;
+    }
+
+    public void LerpRandomEnemyCardToJoust() {
+        if (randomizeCR != null) { StopCoroutine(randomizeCR); randomizeCR = null; }
+        freezeGestures = true;
+        if (joustSeq.isAlive) joustSeq.Stop();
+        var pick = PickRandomCard();
+        if (pick == null) return;
+        LerpToJoust(pick);
+    }
+
+    public void LerpToJoust(EnemyCardSlot slot) {
+        if (slot == null) return;
+        joustLockedSlot = slot;
+        var rt = slot.transform as RectTransform;
+        if (rt == null || joustLocation == null || rt.parent == null) return;
+        var targetAnchored = GetAnchoredTarget(rt, joustLocation);
+        if (joustSeq.isAlive) joustSeq.Stop();
+        joustSeq = Sequence.Create();
+        joustSeq.Insert(0f, Tween.LocalPosition(rt, targetAnchored, joustTweenDuration, ease: Ease.InOutSine));
     }
 }

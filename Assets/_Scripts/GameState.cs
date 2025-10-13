@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class GameState : MonoBehaviour {
 
     public List<EGestures> gestures;
     public CardManager cardManager;
+    public EnemyCards enemyCards;
     public Button submitButton;
     public CardHome home;
     public int stage = 0;
@@ -21,13 +23,11 @@ public class GameState : MonoBehaviour {
         cardManager.AddCard(gesture);
     }
 
-    public void Update() {
-        
-    }
-
-    public void SubmitSelectedCard() {
-        if (cardManager.selectedCard == null)
-            return;
+    public async Task STARTJOUST() {
+        await Task.Delay(100);
+        enemyCards.StartJoust();
+        await Task.Delay(1000);
+        enemyCards.LerpRandomEnemyCardToJoust();
 
     }
 }

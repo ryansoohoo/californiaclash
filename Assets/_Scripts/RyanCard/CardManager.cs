@@ -5,6 +5,7 @@ using PrimeTween;
 
 public class CardManager : MonoBehaviour {
     public static CardManager Instance;
+    public GameState gameState;
     public CardHome cardHome;
     [SerializeField] CardSpot cardSpotPrefab;
     [SerializeField] CardHomeVisual visualHome;
@@ -39,6 +40,7 @@ public class CardManager : MonoBehaviour {
         selectedCard.GetComponent<CardSpot>().visual.selectedX.enabled = false;
         selectedCard.GetComponent<CardSpot>().isJousting = true;
         cardHome.ToggleHidden();
+        gameState.STARTJOUST();
     }
 
     public void EndJoust() {
