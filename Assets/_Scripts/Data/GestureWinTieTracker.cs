@@ -37,6 +37,18 @@ public sealed class GestureWinTieTracker : MonoBehaviour
         { EGestures.Boo, new HashSet<EGestures>{ EGestures.Peace, EGestures.Boo } }
     };
 
+    private readonly StringBuilder sb = new StringBuilder(1024);
+    private string hexA;
+    private string hexB;
+    private string hexT;
+
+    void Awake()
+    {
+        hexA = ColorUtility.ToHtmlStringRGB(firstGestureColor);
+        hexB = ColorUtility.ToHtmlStringRGB(secondGestureColor);
+        hexT = ColorUtility.ToHtmlStringRGB(tieColor);
+    }
+
     void Start()
     {
         ScanRPS();
@@ -54,7 +66,10 @@ public sealed class GestureWinTieTracker : MonoBehaviour
                 if ((a == EGestures.Rock || a == EGestures.Paper || a == EGestures.Scissors) && (b == EGestures.Rock || b == EGestures.Paper || b == EGestures.Scissors)) continue;
                 int outcome = Outcome(a, b);
                 if (outcome < 0) continue;
-                if (logged.Add((a, b))) results.Add((a, b, outcome));
+                if (logged.Add((a, b)))
+                {
+                    results.Add((a, b, outcome));
+                }
             }
         }
         UpdateOutputs();
@@ -71,7 +86,10 @@ public sealed class GestureWinTieTracker : MonoBehaviour
                 var b = set[j];
                 int outcome = Outcome(a, b);
                 if (outcome < 0) continue;
-                if (logged.Add((a, b))) results.Add((a, b, outcome));
+                if (logged.Add((a, b)))
+                {
+                    results.Add((a, b, outcome));
+                }
             }
         }
     }
@@ -84,28 +102,39 @@ public sealed class GestureWinTieTracker : MonoBehaviour
         return -1;
     }
 
+    void AppendLine(EGestures a, EGestures b, int outcome)
+    {
+        if (outcome == 1)
+        {
+            sb.Append("<color=#").Append(hexA).Append('>').Append(a).Append("</color> beat <color=#").Append(hexB).Append('>').Append(b).Append("</color>\n");
+            Debug.Log(a.ToString() + " beat " + b.ToString());
+        }
+        else
+        {
+            sb.Append("<color=#").Append(hexT).Append('>').Append(a).Append("</color> tie <color=#").Append(hexT).Append('>').Append(b).Append("</color>\n");
+            Debug.Log(a.ToString() + " tie " + b.ToString());
+        }
+    }
+
     void UpdateOutputs()
     {
-        var sb = new StringBuilder(results.Count * 24);
+        sb.Clear();
         for (int k = 0; k < results.Count; k++)
         {
             var r = results[k];
-            if (r.Item3 == 1)
-            {
-                var hexA = ColorUtility.ToHtmlStringRGB(firstGestureColor);
-                var hexB = ColorUtility.ToHtmlStringRGB(secondGestureColor);
-                var line = $"<color=#{hexA}>{r.Item1}</color> beat <color=#{hexB}>{r.Item2}</color>\n";
-                sb.Append(line);
-                Debug.Log($"{r.Item1} beat {r.Item2}");
-            }
-            else
-            {
-                var hex = ColorUtility.ToHtmlStringRGB(tieColor);
-                var line = $"<color=#{hex}>{r.Item1}</color> tie <color=#{hex}>{r.Item2}</color>\n";
-                sb.Append(line);
-                Debug.Log($"{r.Item1} tie {r.Item2}");
-            }
+            AppendLine(r.Item1, r.Item2, r.Item3);
         }
         if (targetText != null) targetText.text = sb.ToString();
+    }
+
+    public bool AddOutcome(EGestures a, EGestures b)
+    {
+        int outcome = Outcome(a, b);
+        if (outcome < 0) return false;
+        if (!logged.Add((a, b))) return false;
+        results.Add((a, b, outcome));
+        AppendLine(a, b, outcome);
+        if (targetText != null) targetText.text = sb.ToString();
+        return true;
     }
 }
