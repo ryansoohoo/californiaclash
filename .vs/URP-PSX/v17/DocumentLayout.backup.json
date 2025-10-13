@@ -7,6 +7,18 @@
       "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\enemycards.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\enemycardslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\enemycardslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\ryancard\\cardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\ryancard\\cardspot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardspot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,16 +27,12 @@
       "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardvisualspot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|c:\\users\\ryans\\desktop\\unitystarts\\psx-base\\urp-psx\\assets\\_scripts\\ryancard\\cardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\ryancard\\cardhomevisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardhomevisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\ryancard\\cardhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\assets\\_scripts\\ryancard\\cardhomevisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2248DF5-4450-9FAB-E716-5AE868FBA0C6}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\ryancard\\cardhomevisual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,8 +42,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameState.cs",
+              "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\GameState.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\GameState.cs",
+              "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\GameState.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\GameState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T22:52:06.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EnemyCardSlot.cs",
+              "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\EnemyCardSlot.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\EnemyCardSlot.cs",
+              "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\EnemyCardSlot.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\EnemyCardSlot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T22:47:13.821Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -44,51 +78,52 @@
               "RelativeDocumentMoniker": "Assets\\_Scripts\\EnemyCards.cs",
               "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\EnemyCards.cs",
               "RelativeToolTip": "Assets\\_Scripts\\EnemyCards.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-12T22:39:39.934Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "CardManager.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardManager.cs",
               "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardManager.cs",
               "RelativeToolTip": "Assets\\_Scripts\\RyanCard\\CardManager.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwC8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-12T21:52:18.259Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "CardHome.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHome.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardHome.cs",
               "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHome.cs",
               "RelativeToolTip": "Assets\\_Scripts\\RyanCard\\CardHome.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAUwNwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-12T21:52:21.297Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CardHomeVisual.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHomeVisual.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardHomeVisual.cs",
               "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardHomeVisual.cs",
               "RelativeToolTip": "Assets\\_Scripts\\RyanCard\\CardHomeVisual.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T21:52:20.13Z"
+              "WhenOpened": "2025-10-12T21:52:20.13Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CardSpot.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardSpot.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardSpot.cs",
@@ -101,13 +136,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "CardVisualSpot.cs",
               "DocumentMoniker": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardVisualSpot.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\RyanCard\\CardVisualSpot.cs",
               "ToolTip": "C:\\Users\\ryans\\Desktop\\UnityStarts\\PSX-Base\\URP-PSX\\Assets\\_Scripts\\RyanCard\\CardVisualSpot.cs",
               "RelativeToolTip": "Assets\\_Scripts\\RyanCard\\CardVisualSpot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwDwAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-11T07:06:08.2Z",
               "EditorCaption": ""

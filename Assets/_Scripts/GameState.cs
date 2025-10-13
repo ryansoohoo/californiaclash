@@ -9,6 +9,7 @@ public class GameState : MonoBehaviour {
     public CardManager cardManager;
     public Button submitButton;
     public CardHome home;
+    public int stage = 0;
     public void Start() {
         AddCard(EGestures.Rock);
         AddCard(EGestures.Paper);

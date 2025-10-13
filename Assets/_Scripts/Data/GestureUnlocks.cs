@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// Starts with Rock–Paper–Scissors and expands to 5, 7, then 9 gestures.
