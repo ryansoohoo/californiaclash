@@ -12,7 +12,7 @@ public class CardManager : MonoBehaviour {
     [SerializeField] CardVisualSpot visualPrefab;
     [SerializeField] int initialCount = 0;
     public GestureSprites gestureSprites;
-    readonly List<CardSpot> spots = new List<CardSpot>(128);
+     public List<CardSpot> spots = new List<CardSpot>();
     public CardSpot selectedCard;
     public RectTransform joustTransform;
     Tween moveTween;

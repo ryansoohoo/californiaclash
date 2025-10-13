@@ -76,12 +76,21 @@ public class GameState : MonoBehaviour {
             cardManager.cardHome.Show();
         }
         level++;
-
         cardManager.cardHome.Layout();
         await Task.Delay(300);
         enemyCards.ShuffleCards();
         enemyCards.RandomizeGesture();
-
+        if (cardManager.cardHome.transform.childCount <= 0) {
+            cardManager.ClearAll();
+            AddCard(EGestures.Rock);
+            AddCard(EGestures.Paper);
+            AddCard(EGestures.Scissors);
+            level = -1;
+            cardManager.joustingCard = null;
+            enemyCards.joustingCard=null;
+            cardManager.DeselectAllCards();
+            cardManager.selectedCard = null;
+        }
     }
 
     async Task BounceThreeTimes(RectTransform a, RectTransform b, float offset, float cycleDuration) {
