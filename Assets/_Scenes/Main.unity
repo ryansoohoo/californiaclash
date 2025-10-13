@@ -223,17 +223,19 @@ MonoBehaviour:
   - enemy: 3
     clip: {fileID: 8300000, guid: e2b273de348c8924e8c4103e9c651375, type: 3}
     priority: 0
-  sfxRoundWin: {fileID: 0}
-  sfxRoundLose: {fileID: 0}
+  sfxRoundWin: {fileID: 8300000, guid: fbe7859f8bd7c7240bb3f15871f458b6, type: 3}
+  sfxRoundLose: {fileID: 8300000, guid: 18f51c7e63cf7fa4983a77071a9e14d5, type: 3}
   sfxRoundTie: {fileID: 0}
-  sfxGameWin: {fileID: 0}
-  sfxGameLose: {fileID: 0}
+  sfxGameWin: {fileID: 8300000, guid: ef6d593e2b4a674458db551d8fe01a2f, type: 3}
+  sfxGameLose: {fileID: 8300000, guid: 94ca46440c73a9047a1dd1dab5c734b4, type: 3}
   sfxPoolSize: 10
   sfxPitchJitter: 0.05
   creepyClips:
   - {fileID: 8300000, guid: e204091e0ce3ce24b99a09119cdfdd66, type: 3}
   - {fileID: 8300000, guid: 3dc541be158f14f48974e5e912af1c01, type: 3}
   - {fileID: 8300000, guid: e06ae7b4aaf365348bc569719b4cb779, type: 3}
+  - {fileID: 8300000, guid: 6cd0d69e87d596e468d20f1099257b23, type: 3}
+  - {fileID: 8300000, guid: c2f6ce39b2af21a46b6f9a8d1c9d1885, type: 3}
   creepyIntervalRange: {x: 20, y: 60}
   creepyVolume: 0.6
   creepyEnabled: 1
