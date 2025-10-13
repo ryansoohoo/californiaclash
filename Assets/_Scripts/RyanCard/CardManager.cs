@@ -34,13 +34,15 @@ public class CardManager : MonoBehaviour {
         if (r && cardHome) cardHome.RemoveItem(r);
         var tr = spot.transform;
         var target = joustTransform.position;
-        moveTween = Tween.Position(tr, target, 0.25f, Ease.InOutQuad);
+        moveTween = Tween.Position(tr, target, 0.1f, Ease.Linear);
         selectedCard.GetComponent<CardSpot>().isSelected = false;
         selectedCard.GetComponent<CardSpot>().visual.selectedX.enabled = false;
         selectedCard.GetComponent<CardSpot>().isJousting = true;
+        cardHome.ToggleHidden();
     }
 
     public void EndJoust() {
+        cardHome.ToggleHidden();
         AddCard(joustingCard);
         joustingCard.isJousting = false;
         joustingCard = null;

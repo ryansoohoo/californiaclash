@@ -9,8 +9,10 @@ public class CardHome : MonoBehaviour {
     [SerializeField] float baseGap = 12f;
     [SerializeField] float sidePadding = 0f;
     [SerializeField] float anchoredY = 0f;
+    [SerializeField] float anchoredYHidden = 0f;
     [SerializeField] float minGap = -200f;
     [SerializeField] float hoverExtraGap = 24f;
+    public bool isHidden;
     RectTransform _rt;
     int _lastHoverIndex = int.MinValue;
     readonly Dictionary<RectTransform, int> _stableOrder = new Dictionary<RectTransform, int>(64);
@@ -55,15 +57,14 @@ public class CardHome : MonoBehaviour {
         if (idx != _lastHoverIndex) { _lastHoverIndex = idx; Layout(); }
     }
 
-    //from card spot
     public void SelectCard(CardSpot spot) {
-        if(selectedCard)
+        if (selectedCard)
             selectedCard.visual.selectedX.enabled = false;
         spot.visual.selectedX.enabled = true;
         selectedCard = spot;
         CardManager.Instance.selectedCard = spot;
     }
-    //from card spot
+
     public void DeselectCard(CardSpot spot) {
         if (selectedCard) {
             selectedCard.visual.selectedX.enabled = false;
@@ -71,7 +72,6 @@ public class CardHome : MonoBehaviour {
         }
         if (CardManager.Instance.selectedCard)
             CardManager.Instance.selectedCard.isSelected = false;
-
         spot.visual.selectedX.enabled = false;
         selectedCard = null;
     }
@@ -86,7 +86,7 @@ public class CardHome : MonoBehaviour {
         items.Sort(new GestureStableComparer(_stableOrder));
         float W = container.rect.width > 0 ? container.rect.width : 750f;
         float w = ResolveItemWidth(n);
-        if (n == 1) { SetIndex(items[0], 0); Place(items[0], 0f); return; }
+        if (n == 1) { SetIndex(items[0], 0); Place(items[0], 0f, ResolveY()); return; }
         float desiredStep = w + baseGap;
         float desiredSpan = desiredStep * (n - 1);
         float usableW = Mathf.Max(0f, W - 2f * sidePadding);
@@ -97,13 +97,14 @@ public class CardHome : MonoBehaviour {
         float extra = hoveredIndex >= 0 ? Mathf.Max(0f, hoverExtraGap) : 0f;
         float baseSpan = step * (n - 1);
         float startX = -0.5f * baseSpan;
+        float y = ResolveY();
         for (int i = 0; i < n; i++) {
             var it = items[i];
             if (!it) continue;
-            if (it.anchorMin.x != 0.5f || it.anchorMax.x != 0.5f || it.pivot.x != 0.5f) {
-                var am = it.anchorMin; am.x = 0.5f; it.anchorMin = am;
-                var ax = it.anchorMax; ax.x = 0.5f; it.anchorMax = ax;
-                var pv = it.pivot; pv.x = 0.5f; it.pivot = pv;
+            if (it.anchorMin.x != 0.5f || it.anchorMax.x != 0.5f || it.pivot.x != 0.5f || it.anchorMin.y != 0.5f || it.anchorMax.y != 0.5f || it.pivot.y != 0.5f) {
+                var am = it.anchorMin; am.x = 0.5f; am.y = 0.5f; it.anchorMin = am;
+                var ax = it.anchorMax; ax.x = 0.5f; ax.y = 0.5f; it.anchorMax = ax;
+                var pv = it.pivot; pv.x = 0.5f; pv.y = 0.5f; it.pivot = pv;
             }
             float x = startX + i * step;
             if (extra > 0f) {
@@ -111,7 +112,7 @@ public class CardHome : MonoBehaviour {
                 else if (i >= hoveredIndex + 1) x += extra;
             }
             SetIndex(it, i);
-            Place(it, x);
+            Place(it, x, y);
         }
     }
 
@@ -127,9 +128,13 @@ public class CardHome : MonoBehaviour {
         return 100f;
     }
 
-    void Place(RectTransform item, float x) {
+    float ResolveY() {
+        return isHidden ? anchoredYHidden : anchoredY;
+    }
+
+    void Place(RectTransform item, float x, float y) {
         var p = item.anchoredPosition;
-        if (p.x != x || p.y != anchoredY) item.anchoredPosition = new Vector2(x, anchoredY);
+        if (p.x != x || p.y != y) item.anchoredPosition = new Vector2(x, y);
     }
 
     void SetIndex(RectTransform item, int idx) {
@@ -216,5 +221,23 @@ public class CardHome : MonoBehaviour {
             if (!it) continue;
             if (!_stableOrder.ContainsKey(it)) _stableOrder[it] = _nextOrderId++;
         }
+    }
+
+    public void SetHidden(bool hidden) {
+        if (isHidden == hidden) return;
+        isHidden = hidden;
+        Layout();
+    }
+
+    public void Show() {
+        SetHidden(false);
+    }
+
+    public void Hide() {
+        SetHidden(true);
+    }
+
+    public void ToggleHidden() {
+        SetHidden(!isHidden);
     }
 }
