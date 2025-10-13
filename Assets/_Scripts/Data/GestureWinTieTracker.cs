@@ -37,22 +37,29 @@ public sealed class GestureWinTieTracker : MonoBehaviour
         { EGestures.Boo, new HashSet<EGestures>{ EGestures.Peace, EGestures.Boo } }
     };
 
-    private readonly StringBuilder sb = new StringBuilder(1024);
+    private readonly StringBuilder view = new StringBuilder(1024);
     private string hexA;
     private string hexB;
     private string hexT;
 
-    void Awake()
+    void Start()
     {
         hexA = ColorUtility.ToHtmlStringRGB(firstGestureColor);
         hexB = ColorUtility.ToHtmlStringRGB(secondGestureColor);
         hexT = ColorUtility.ToHtmlStringRGB(tieColor);
+        if (targetText != null) targetText.text = string.Empty;
     }
 
-    void Start()
+    public bool AddOutcome(EGestures a, EGestures b)
     {
-        ScanRPS();
-        UpdateOutputs();
+        int outcome = Outcome(a, b);
+        if (outcome < 0) return false;
+        if (!logged.Add((a, b))) return false;
+        results.Add((a, b, outcome));
+        if (targetText == null) return true;
+        view.Append(FormatLine(a, b, outcome));
+        targetText.text = view.ToString();
+        return true;
     }
 
     public void ScanExtended()
@@ -66,32 +73,10 @@ public sealed class GestureWinTieTracker : MonoBehaviour
                 if ((a == EGestures.Rock || a == EGestures.Paper || a == EGestures.Scissors) && (b == EGestures.Rock || b == EGestures.Paper || b == EGestures.Scissors)) continue;
                 int outcome = Outcome(a, b);
                 if (outcome < 0) continue;
-                if (logged.Add((a, b)))
-                {
-                    results.Add((a, b, outcome));
-                }
+                if (logged.Add((a, b))) results.Add((a, b, outcome));
             }
         }
         UpdateOutputs();
-    }
-
-    void ScanRPS()
-    {
-        var set = new[] { EGestures.Rock, EGestures.Paper, EGestures.Scissors };
-        for (int i = 0; i < set.Length; i++)
-        {
-            for (int j = 0; j < set.Length; j++)
-            {
-                var a = set[i];
-                var b = set[j];
-                int outcome = Outcome(a, b);
-                if (outcome < 0) continue;
-                if (logged.Add((a, b)))
-                {
-                    results.Add((a, b, outcome));
-                }
-            }
-        }
     }
 
     int Outcome(EGestures a, EGestures b)
@@ -102,39 +87,20 @@ public sealed class GestureWinTieTracker : MonoBehaviour
         return -1;
     }
 
-    void AppendLine(EGestures a, EGestures b, int outcome)
-    {
-        if (outcome == 1)
-        {
-            sb.Append("<color=#").Append(hexA).Append('>').Append(a).Append("</color> beat <color=#").Append(hexB).Append('>').Append(b).Append("</color>\n");
-            Debug.Log(a.ToString() + " beat " + b.ToString());
-        }
-        else
-        {
-            sb.Append("<color=#").Append(hexT).Append('>').Append(a).Append("</color> tie <color=#").Append(hexT).Append('>').Append(b).Append("</color>\n");
-            Debug.Log(a.ToString() + " tie " + b.ToString());
-        }
-    }
-
     void UpdateOutputs()
     {
-        sb.Clear();
+        view.Clear();
         for (int k = 0; k < results.Count; k++)
         {
             var r = results[k];
-            AppendLine(r.Item1, r.Item2, r.Item3);
+            view.Append(FormatLine(r.Item1, r.Item2, r.Item3));
         }
-        if (targetText != null) targetText.text = sb.ToString();
+        if (targetText != null) targetText.text = view.ToString();
     }
 
-    public bool AddOutcome(EGestures a, EGestures b)
+    string FormatLine(EGestures a, EGestures b, int outcome)
     {
-        int outcome = Outcome(a, b);
-        if (outcome < 0) return false;
-        if (!logged.Add((a, b))) return false;
-        results.Add((a, b, outcome));
-        AppendLine(a, b, outcome);
-        if (targetText != null) targetText.text = sb.ToString();
-        return true;
+        if (outcome == 1) return $"<color=#{hexA}>{a}</color> beat <color=#{hexB}>{b}</color>\n";
+        return $"<color=#{hexT}>{a}</color> tie <color=#{hexT}>{b}</color>\n";
     }
 }
