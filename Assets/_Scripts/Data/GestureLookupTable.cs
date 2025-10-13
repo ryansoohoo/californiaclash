@@ -49,8 +49,8 @@ public static class GestureLookupTable {
             [EGestures.Rock] = new GestureData(
                 EGestures.Rock,
                 new[] { EGestures.FYou, EGestures.Scissors, EGestures.Boo },
-                new[] { EGestures.Gun, EGestures.Paper, EGestures.Nose },
-                new[] { EGestures.OK, EGestures.Peace, EGestures.Rock }
+                new[] { EGestures.Gun, EGestures.Nose, EGestures.Paper },
+                new[] { EGestures.OK, EGestures.Peace, EGestures.Rock, }
             ),
             [EGestures.Boo] = new GestureData(
                 EGestures.Boo,

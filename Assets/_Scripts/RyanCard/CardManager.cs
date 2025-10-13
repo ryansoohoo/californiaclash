@@ -46,8 +46,10 @@ public class CardManager : MonoBehaviour {
     public void EndJoust() {
         cardHome.ToggleHidden();
         AddCard(joustingCard);
-        joustingCard.isJousting = false;
-        joustingCard = null;
+        if (joustingCard) {
+            joustingCard.isJousting = false;
+            joustingCard = null;
+        }
     }
 
     public void AddCardDebug() {

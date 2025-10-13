@@ -14,4 +14,18 @@ public class EnemyCardSlot : MonoBehaviour
         leftText.text = gesture.ToString();
         rightText.text = gesture.ToString();
     }
+
+    public void Hide() {
+        image.enabled=false;
+        hiddenImage.enabled = true;
+        leftText.enabled = false;
+        rightText.enabled = false;
+    }
+
+    public void UnHide() {
+        image.enabled = true;
+        hiddenImage.enabled = false;
+        leftText.enabled = true;
+        rightText.enabled = true;
+    }
 }

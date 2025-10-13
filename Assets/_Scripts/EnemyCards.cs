@@ -9,6 +9,7 @@ public class EnemyCards : MonoBehaviour {
     public GameState GameState;
     public List<EnemyCardSlot> enemyCardSlots;
     public RectTransform joustLocation;
+    public EnemyCardSlot joustingCard;
     [SerializeField] float shuffleRandomizeDuration = 1f;
     [SerializeField] int shuffleSteps = 8;
     [SerializeField] float shuffleReturnDuration = 0.2f;
@@ -84,6 +85,7 @@ public class EnemyCards : MonoBehaviour {
     }
 
     public void ResetToStartingPositions() {
+        ShowCards();
         int n = startingPositions != null ? startingPositions.Count : 0;
         for (int i = 0; i < n; i++) {
             var slot = enemyCardSlots[i];
@@ -218,5 +220,20 @@ public class EnemyCards : MonoBehaviour {
         if (joustSeq.isAlive) joustSeq.Stop();
         joustSeq = Sequence.Create();
         joustSeq.Insert(0f, Tween.LocalPosition(rt, targetAnchored, joustTweenDuration, ease: Ease.InOutSine));
+        joustingCard = slot;
+    }
+
+    public void HideCards() {
+        foreach(EnemyCardSlot card in enemyCardSlots) {
+            card.Hide();
+        }
+    }
+    public void ShowCards() {
+        foreach (EnemyCardSlot card in enemyCardSlots) {
+            card.UnHide();
+        }
+    }
+    public void EndJoust() {
+        joustingCard = null;
     }
 }
