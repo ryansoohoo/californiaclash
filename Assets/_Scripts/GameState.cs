@@ -70,7 +70,7 @@ public class GameState : MonoBehaviour {
         else if (outcome == -1) {
             CardSpot spot = cardManager.joustingCard;
             cardManager.RemoveCard(spot);
-            Destroy(spot);
+            Destroy(spot.gameObject);
             await Task.Delay(600);
             enemyCards.ResetToStartingPositions();
             cardManager.cardHome.Show();
