@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
     // ===== Singleton =====
     public static SoundManager I { get; private set; }
+
+    [SerializeField] Slider volumeSlider;
+    public AudioMixer masterMixer;
     void Awake()
     {
         if (I != null && I != this) { Destroy(gameObject); return; }
@@ -161,14 +165,19 @@ public class SoundManager : MonoBehaviour
         CrossfadeTo(target);
     }
 
+    public void SetMasterVolume(float volume)
+    {
+        // volume is expected to be in [0,1] range
+        masterMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+    }
     // ===== Public API: Round & Game outcome SFX =====
     public void PlayRoundOutcome(RoundOutcome outcome)
     {
         switch (outcome)
         {
-            case RoundOutcome.Win:  PlaySfx(sfxRoundWin);  break;
+            case RoundOutcome.Win: PlaySfx(sfxRoundWin); break;
             case RoundOutcome.Lose: PlaySfx(sfxRoundLose); break;
-            case RoundOutcome.Tie:  PlaySfx(sfxRoundTie);  break;
+            case RoundOutcome.Tie: PlaySfx(sfxRoundTie); break;
         }
     }
 
@@ -270,5 +279,34 @@ public class SoundManager : MonoBehaviour
     {
         if (enemyMusicLookup.TryGetValue(enemy, out var em) && em.clip != null)
             CrossfadeTo(em.clip);
+    }
+
+    void Start()
+    {
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
+            PlayerPrefs.SetFloat("musicVolume", 0.5f);
+            Load();
+        }
+        else
+        {
+            Load();
+        }
+    }
+
+    public void ChangeVolume()
+    {
+        AudioListener.volume = volumeSlider.value;
+        Save();
+    }
+
+    private void Load()
+    {
+        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+    }
+    
+    private void Save()
+    {
+        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
     }
 }
