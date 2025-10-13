@@ -47,6 +47,7 @@ public class GameState : MonoBehaviour {
         print(enemyCards.joustingCard.gesture);
         int outcome = GestureOutcome.OutcomeFromTable(cardManager.joustingCard.gesture, enemyCards.joustingCard.gesture); // Returns: 1 (A wins), 0 (tie/undefined), -1 (A loses).
         Debug.Log(outcome);
+        GetComponent<GestureWinTieTracker>().AddOutcome(cardManager.joustingCard.gesture, enemyCards.joustingCard.gesture);
         if (outcome == 0) {            
             EGestures spot = cardManager.joustingCard.gesture;
             cardManager.AddCard(spot);
